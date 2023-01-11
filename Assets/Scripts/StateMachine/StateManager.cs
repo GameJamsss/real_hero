@@ -1,64 +1,73 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.StateMachine
 {
-    public class StateManager<T>
+    public class StateManager<T> : MonoBehaviour
     {
-        private HashSet<AbstractState<T>> States;
+        private List<AbstractState<T>> States;
         public T Entity;
 
         public StateManager(T entity)
         {
             Entity = entity;
-            States = new HashSet<AbstractState<T>>();
+            States = new List<AbstractState<T>>();
         }
         public StateManager(T entity, params AbstractState<T>[] states)
         {
             Entity = entity;
-            States = new HashSet<AbstractState<T>>(states);
+            States = new List<AbstractState<T>>(states);
         }
-        public StateManager(T entity, HashSet<AbstractState<T>> states)
+        public StateManager(T entity, List<AbstractState<T>> states)
         {
             Entity = entity;
             States = states;
         }
         public bool GetNewState(ref AbstractState<T> current)
         {
-            ulong priority = 0;
-            AbstractState<T> previous = current;
-            int rule = current.WhiteSet.Count != 0 ? 1 : current.BlackSet.Count != 0 ? -1 : 0;
-            switch (rule)
+            if (!current.Lock)
             {
-                case 1:
-                    foreach (AbstractState<T> state in States)
-                        if (current.WhiteSet.Contains(state) && state.EnterCondition(Entity) && priority < state.priority)
+                ulong priority = 0;
+                AbstractState<T> previous = current;
+                switch (current.WhiteSet.Count != 0 ? 1 : current.BlackSet.Count != 0 ? -1 : 0)
+                {
+                    case 1:
+                        foreach (AbstractState<T> state in States)
+                            if (current.WhiteSet.Contains(state) && state.EnterCondition(Entity) && priority < state.Priority)
+                            {
+                                priority = state.Priority;
+                                current = state;
+                            }
+                        break;
+                    case -1:
+                        foreach (AbstractState<T> state in States)
+                            if (!current.BlackSet.Contains(state) && state.EnterCondition(Entity) && priority < state.Priority)
+                            {
+                                priority = state.Priority;
+                                current = state;
+                            }
+                        break;
+                    case 0:
+                        foreach (AbstractState<T> state in States)
                         {
-                            priority = state.priority;
-                            current = state;
+                            Debug.Log(state.Name);
+                            if (state.EnterCondition(Entity) && priority < state.Priority)
+                            {
+                                priority = state.Priority;
+                                current = state;
+                            }
                         }
-                    break;
-                case -1:
-                    foreach (AbstractState<T> state in States)
-                        if (!current.BlackSet.Contains(state) && state.EnterCondition(Entity) && priority < state.priority)
-                        {
-                            priority = state.priority;
-                            current = state;
-                        }
-                    break;
-                case 0:
-                    foreach (AbstractState<T> state in States)
-                        if (state.EnterCondition(Entity) && priority < state.priority)
-                        {
-                            priority = state.priority;
-                            current = state;
-                        }
-                    break;
+                        break;
+                }
+                return previous != current;
             }
-            return previous != current;
+            else 
+            {
+                return false;
+            } 
+                
+            
         }
         public StateManager<T> AddState(AbstractState<T> newState)
         {
@@ -66,44 +75,43 @@ namespace Assets.Scripts.StateMachine
             {
                 if (state.Name.Equals(newState.Name))
                 {
-                    Console.WriteLine("State with name \"" + newState.Name + "\" already exists");
                     return this;
                 }
-                if (state.priority == newState.priority)
+                if (state.Priority == newState.Priority)
                 {
-                    Console.WriteLine("State with priority \"" + newState.priority + "\" already exists");
                     return this;
                 }
             }
             States.Add(newState);
+            Debug.Log(States.Count);
             return this;
         }
 
-        public State<T> StateNewInstanse(string name, ulong priority)
+        public State<T> NewStateInstance(string name, ulong priority)
         {
             State<T> newState = new State<T>(name, priority);
             AddState(newState);
             return newState;
         }
-        public State<T> StateNewInstanse(string name, ulong priority, Action<T> stateLogic)
+        public State<T> NewStateInstance(string name, ulong priority, Action<T> stateLogic)
         {
             State<T> newState = new State<T>(name, priority, stateLogic);
             AddState(newState);
             return newState;
         }
-        public State<T> StateNewInstanse(string name, ulong priority, Action<T> stateLogic, Func<T, bool> enterCondition)
+        public State<T> NewStateInstance(string name, ulong priority, Action<T> stateLogic, Func<T, bool> enterCondition)
         {
             State<T> newState = new State<T>(name, priority, stateLogic, enterCondition);
             AddState(newState);
             return newState;
         }
-        public State<T> StateNewInstanse(string name, ulong priority, Action<T> stateLogic, Action<T> onStateEnter, Action<T> onStateExit)
+        public State<T> NewStateInstance(string name, ulong priority, Action<T> stateLogic, Action<T> onStateEnter, Action<T> onStateExit)
         {
             State<T> newState = new State<T>(name, priority, stateLogic, onStateEnter, onStateExit);
             AddState(newState);
             return newState;
         }
-        public State<T> StateNewInstanse(string name, ulong priority, Action<T> stateLogic, Action<T> onStateEnter, Action<T> onStateExit, Func<T, bool> enterCondition)
+        public State<T> NewStateInstance(string name, ulong priority, Action<T> stateLogic, Action<T> onStateEnter, Action<T> onStateExit, Func<T, bool> enterCondition)
         {
             State<T> newState = new State<T>(name, priority, stateLogic, onStateEnter, onStateExit, enterCondition);
             AddState(newState);

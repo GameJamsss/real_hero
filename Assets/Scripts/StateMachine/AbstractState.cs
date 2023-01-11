@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.StateMachine
 {
     
-    public abstract class AbstractState<T>
+    public abstract class AbstractState<T> : MonoBehaviour
     {
-        public HashSet<AbstractState<T>> BlackSet = new HashSet<AbstractState<T>>();
-        public HashSet<AbstractState<T>> WhiteSet = new HashSet<AbstractState<T>>();
+        public List<AbstractState<T>> BlackSet = new List<AbstractState<T>>();
+        public List<AbstractState<T>> WhiteSet = new List<AbstractState<T>>();
 
-        private ulong _priority = 0;
-        public ulong priority
+        public List<StateModifier<T>> Modifiers = new List<StateModifier<T>>();
+
+        public bool Lock = false;
+        protected ulong _priority = 0;
+        public ulong Priority
         {
             get => _priority;
             set
@@ -22,8 +23,20 @@ namespace Assets.Scripts.StateMachine
             }
         }
         public string Name;
+        public void OnEnterModifier(T entity)
+        {
+            Modifiers.ForEach(modifier => modifier.EnterModify(entity));
+        }
+        public void UpdateModifier(T entity)
+        {
+            Modifiers.ForEach(modifier => modifier.UpdateModify(entity));
+        }
+        public void OnExitModifier(T entity)
+        {
+            Modifiers.ForEach(modifier => modifier.ExitModify(entity));
+        }
         abstract public void OnEnter(T entity);
-        abstract public void InState(T entity);
+        abstract public void OnUpdate(T entity);
         abstract public void OnExit(T entity);
         virtual public bool EnterCondition(T entity)
         {
