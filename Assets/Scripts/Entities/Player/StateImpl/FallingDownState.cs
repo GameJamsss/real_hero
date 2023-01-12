@@ -1,16 +1,15 @@
 ﻿using Assets.Scripts.Entities.Player.ModifierImpl;
 using Assets.Scripts.StateMachine;
 using System;
-using UnityEngine;
 
 namespace Assets.Scripts.Entities.Player.StateImpl
 {
-    public class RunState : AbstractState<TestPlayer>
+    public class FallingDownState : AbstractState<TestPlayer>
     {
-        public RunState()
+        public FallingDownState()
         {
-            Name = "Run";
-            Priority = 2;
+            Name = "FallingDown";
+            Priority = 5;
             AddModifier(new GenericMoveModifier());
         }
 
@@ -31,7 +30,8 @@ namespace Assets.Scripts.Entities.Player.StateImpl
 
         public override bool EnterCondition(TestPlayer entity)
         {
-            return Input.GetButton("Horizontal") && Utils.Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask);
+            return entity.Rigidbody.velocity.y < 0f 
+                && Utils.Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask);
         }
     }
 }

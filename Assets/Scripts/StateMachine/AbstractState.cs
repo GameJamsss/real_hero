@@ -10,18 +10,11 @@ namespace Assets.Scripts.StateMachine
         public List<AbstractState<T>> BlackSet = new List<AbstractState<T>>();
         public List<AbstractState<T>> WhiteSet = new List<AbstractState<T>>();
 
-        public List<StateModifier<T>> Modifiers = new List<StateModifier<T>>();
+        private List<StateModifier<T>> Modifiers = new List<StateModifier<T>>();
 
         public bool Lock = false;
-        protected ulong _priority = 0;
-        public ulong Priority
-        {
-            get => _priority;
-            set
-            {
-                _priority = value + 1;
-            }
-        }
+        public ulong Priority = 0;
+        
         public string Name;
         public void OnEnterModifier(T entity)
         {
@@ -35,9 +28,29 @@ namespace Assets.Scripts.StateMachine
         {
             Modifiers.ForEach(modifier => modifier.ExitModify(entity));
         }
-        abstract public void OnEnter(T entity);
-        abstract public void OnUpdate(T entity);
-        abstract public void OnExit(T entity);
+
+        abstract protected void OnEnterLogic(T entity);
+        abstract protected void OnUpdateLogic(T entity);
+        abstract protected void OnExitLogic(T entity);
+        public void OnEnter(T entity)
+        {
+            OnEnterLogic(entity);
+            Modifiers.ForEach(m => m.EnterModify(entity));
+        }
+        public void OnUpdate(T entity)
+        {
+            OnUpdateLogic(entity);
+            Modifiers.ForEach(m => m.UpdateModify(entity));
+        }
+        public void OnExit(T entity)
+        {
+            OnExitLogic(entity);
+            Modifiers.ForEach(m => m.ExitModify(entity));
+        }
+        public void AddModifier(StateModifier<T> m)
+        {
+            Modifiers.Add(m);
+        }
         virtual public bool EnterCondition(T entity)
         {
             return true;

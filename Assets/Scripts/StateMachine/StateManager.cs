@@ -17,12 +17,12 @@ namespace Assets.Scripts.StateMachine
         public StateManager(T entity, params AbstractState<T>[] states)
         {
             Entity = entity;
-            States = new List<AbstractState<T>>(states);
+            new List<AbstractState<T>>(states).ForEach(s => AddState(s));
         }
         public StateManager(T entity, List<AbstractState<T>> states)
         {
             Entity = entity;
-            States = states;
+            states.ForEach(s => AddState(s));
         }
         public bool GetNewState(ref AbstractState<T> current)
         {
@@ -51,7 +51,6 @@ namespace Assets.Scripts.StateMachine
                     case 0:
                         foreach (AbstractState<T> state in States)
                         {
-                            Debug.Log(state.Name);
                             if (state.EnterCondition(Entity) && priority < state.Priority)
                             {
                                 priority = state.Priority;
@@ -60,7 +59,7 @@ namespace Assets.Scripts.StateMachine
                         }
                         break;
                 }
-                return previous != current;
+                return previous.Name != current.Name;
             }
             else 
             {
@@ -75,15 +74,16 @@ namespace Assets.Scripts.StateMachine
             {
                 if (state.Name.Equals(newState.Name))
                 {
+                    Debug.Log("State with name: " + newState.Name + " already exists");
                     return this;
                 }
                 if (state.Priority == newState.Priority)
                 {
+                    Debug.Log("State with priority: " + newState.Priority + " already exists");
                     return this;
                 }
             }
             States.Add(newState);
-            Debug.Log(States.Count);
             return this;
         }
 

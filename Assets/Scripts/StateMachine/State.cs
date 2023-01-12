@@ -48,15 +48,15 @@ namespace Assets.Scripts.StateMachine
             EnterConditionD = enterCondition;
             base.Priority = priority;
         }
-        override public void OnEnter(T entity)
+        override protected void OnEnterLogic(T entity)
         {
             _onEnter?.Invoke(entity);
         }
-        override public void OnUpdate(T entity)
+        override protected void OnUpdateLogic(T entity)
         {
             _inState?.Invoke(entity);
         }
-        override public void OnExit(T entity)
+        override protected void OnExitLogic(T entity)
         {
             _onExit?.Invoke(entity);
         }

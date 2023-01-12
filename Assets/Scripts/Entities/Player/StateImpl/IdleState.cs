@@ -1,9 +1,4 @@
 ﻿using Assets.Scripts.StateMachine;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.Entities.Player.StateImpl
 {
@@ -12,20 +7,20 @@ namespace Assets.Scripts.Entities.Player.StateImpl
         public IdleState()
         {
             Name = "Idle";
-            _priority = 1;
+            Priority = 1;
         }
 
-        public override void OnEnter(TestPlayer entity)
+        protected override void OnEnterLogic(TestPlayer entity)
         {
            
         }
 
-        public override void OnExit(TestPlayer entity)
+        protected override void OnExitLogic(TestPlayer entity)
         {
             
         }
 
-        public override void OnUpdate(TestPlayer entity)
+        protected override void OnUpdateLogic(TestPlayer entity)
         {
             
         }
