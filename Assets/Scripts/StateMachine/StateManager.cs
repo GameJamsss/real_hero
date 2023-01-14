@@ -74,9 +74,7 @@ namespace Assets.Scripts.StateMachine
             else 
             {
                 return false;
-            } 
-                
-            
+            }
         }
         public StateManager<T> AddState(AbstractState<T> newState)
         {

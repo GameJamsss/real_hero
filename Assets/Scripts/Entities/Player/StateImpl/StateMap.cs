@@ -9,7 +9,6 @@ namespace Assets.Scripts.Entities.Player.StateImpl
     internal static class StateMap
     {
         private static readonly GenericMoveModifier gmm = new GenericMoveModifier();
-
         private static readonly GenericJumpModifier gjm = new GenericJumpModifier();
 
         public static State<TestPlayer> Idle = new State<TestPlayer>("Idle", (ulong) StatePriority.Idle)
@@ -22,10 +21,7 @@ namespace Assets.Scripts.Entities.Player.StateImpl
             .AddModifier(gmm);
 
         public static State<TestPlayer> Jump = new State<TestPlayer>("Jump", (ulong) StatePriority.Jump)
-            .SetEnterCondition(entity =>
-                (Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask) && Input.GetButton("Jump"))
-                || (Input.GetButton("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps)
-            )
+            .SetEnterCondition(entity => (Input.GetButton("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps))
             .SetOnStateEnter(entity =>
                 entity.AirJumpsCounter += Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask) ? 0 : 1
             )
