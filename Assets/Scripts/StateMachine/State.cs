@@ -85,6 +85,11 @@ namespace Assets.Scripts.StateMachine
             _onExit = onStateExit;
             return this;
         }
+        public new State<T> AddModifier(StateModifier<T> modifier)
+        {
+            base.AddModifier(modifier);
+            return this;
+        }
         public new State<T> ToBlack(AbstractState<T> state)
         {
             base.ToBlack(state);
@@ -93,6 +98,11 @@ namespace Assets.Scripts.StateMachine
         public new State<T> ToWhite(AbstractState<T> state)
         {
             base.ToWhite(state);
+            return this;
+        }
+        public new State<T> ToTransitFrom(AbstractState<T> state)
+        {
+            base.ToTransitFrom(state);
             return this;
         }
         public State<T> SetEnterCondition(Func<T, bool> con)

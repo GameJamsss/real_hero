@@ -9,7 +9,7 @@ namespace Assets.Scripts.Entities.Player.StateImpl
         public FallingDownState()
         {
             Name = "FallingDown";
-            Priority = 5;
+            Priority = 4;
             AddModifier(new GenericMoveModifier());
         }
 
@@ -30,8 +30,7 @@ namespace Assets.Scripts.Entities.Player.StateImpl
 
         public override bool EnterCondition(TestPlayer entity)
         {
-            return entity.Rigidbody.velocity.y < 0f 
-                && Utils.Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask);
+            return !Utils.Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask);
         }
     }
 }

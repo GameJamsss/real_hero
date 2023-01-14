@@ -351,6 +351,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5154579175268392635, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
+      propertyPath: GroundMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6185130405884480299, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
       propertyPath: m_Name
       value: TestPlayer

@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.StateMachine;
 using Assets.Scripts.Entities.Player.StateImpl;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Assets.Scripts.Entities
 {
@@ -12,12 +13,17 @@ namespace Assets.Scripts.Entities
         [Header("Jump height")]
         [SerializeField] public float JumpHeight = 5.0f;
 
+        [Header("Max air jumps")]
+        [SerializeField] public int MaxAirJumps = 1;
+
         [Header("Ground Layer Mask")]
         [SerializeField] public LayerMask GroundMask;
 
         [HideInInspector] public Collider2D Collider;
 
         [HideInInspector] public Rigidbody2D Rigidbody;
+
+        [HideInInspector] public int AirJumpsCounter = 0;
 
         StateMachine<TestPlayer> fsm;
 
@@ -31,19 +37,17 @@ namespace Assets.Scripts.Entities
 
             fsm = new StateMachine<TestPlayer>(
                 new StateManager<TestPlayer>(this)
-                .AddState(new IdleState())
-                .AddState(new RunState())
-                .AddState(new JumpState())
-                .AddState(new FallingDownState())
-                .AddState(new MovingUpState())
+                .AddState(StateMap.Idle)
+                .AddState(StateMap.Move)
+                .AddState(StateMap.Jump)
+                .AddState(StateMap.Fall)
+                .AddState(StateMap.MoveUp)
                 );
         }
 
         void Update()
         {
             fsm.Run();
-            Debug.Log(Rigidbody.velocity.y);
-            // Debug.LogError("fsm not set in main character: " + gameObject.name);
             Debug.Log(fsm.currentState.Name);
         }
     }

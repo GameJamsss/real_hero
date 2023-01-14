@@ -7,8 +7,9 @@ namespace Assets.Scripts.StateMachine
     
     public abstract class AbstractState<T> : MonoBehaviour
     {
-        public List<AbstractState<T>> BlackSet = new List<AbstractState<T>>();
-        public List<AbstractState<T>> WhiteSet = new List<AbstractState<T>>();
+        public List<AbstractState<T>> BlackList = new List<AbstractState<T>>();
+        public List<AbstractState<T>> WhiteList = new List<AbstractState<T>>();
+        public List<AbstractState<T>> TransitFrom = new List<AbstractState<T>>();
 
         private List<StateModifier<T>> Modifiers = new List<StateModifier<T>>();
 
@@ -57,12 +58,18 @@ namespace Assets.Scripts.StateMachine
         }
         public AbstractState<T> ToBlack(AbstractState<T> state)
         {
-            BlackSet.Add(state);
+            BlackList.Add(state);
             return this;
         }
         public AbstractState<T> ToWhite(AbstractState<T> state)
         {
-            WhiteSet.Add(state);
+            WhiteList.Add(state);
+            return this;
+        }
+
+        public AbstractState<T> ToTransitFrom(AbstractState<T> state)
+        {
+            TransitFrom.Add(state);
             return this;
         }
     }

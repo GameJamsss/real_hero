@@ -9,7 +9,7 @@ namespace Assets.Scripts.Entities.Player.StateImpl
         public MovingUpState()
         {
             Name = "MovingUp";
-            Priority = 4;
+            Priority = 5;
             AddModifier(new GenericMoveModifier());
         }
 
@@ -31,7 +31,7 @@ namespace Assets.Scripts.Entities.Player.StateImpl
         public override bool EnterCondition(TestPlayer entity)
         {
             return entity.Rigidbody.velocity.y > 0f 
-                && Utils.Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask);
+                && !Utils.Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask);
         }
     }
 }

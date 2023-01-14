@@ -1,22 +1,19 @@
-﻿using Assets.Scripts.Entities.Player.ModifierImpl;
-using Assets.Scripts.StateMachine;
-using System;
+﻿using Assets.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities.Player.StateImpl
 {
-    public class RunState : AbstractState<TestPlayer>
+    public class AirJumpState : AbstractState<TestPlayer>
     {
-        public RunState()
+        public AirJumpState()
         {
-            Name = "Run";
-            Priority = 2;
-            AddModifier(new GenericMoveModifier());
+            Name = "AirJump";
+            Priority = 3;
         }
 
         protected override void OnEnterLogic(TestPlayer entity)
         {
-
+            entity.Rigidbody.AddForce(Vector2.up * entity.JumpHeight, ForceMode2D.Impulse);
         }
 
         protected override void OnExitLogic(TestPlayer entity)
@@ -31,8 +28,8 @@ namespace Assets.Scripts.Entities.Player.StateImpl
 
         public override bool EnterCondition(TestPlayer entity)
         {
-            return Input.GetButton("Horizontal")
-                && Utils.Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask);
+            return Utils.Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask)
+                && Input.GetButton("Jump");
         }
     }
 }

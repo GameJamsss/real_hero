@@ -28,7 +28,6 @@ namespace Assets.Scripts.Entities.Player.ModifierImpl
             if (Input.GetAxis("Horizontal") < 0)
             {
                 characterScale.x = -1;
-
             }
             if (Input.GetAxis("Horizontal") > 0)
             {

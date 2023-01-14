@@ -30,11 +30,14 @@ namespace Assets.Scripts.StateMachine
             {
                 ulong priority = 0;
                 AbstractState<T> previous = current;
-                switch (current.WhiteSet.Count != 0 ? 1 : current.BlackSet.Count != 0 ? -1 : 0)
+                switch (current.WhiteList.Count != 0 ? 1 : current.BlackList.Count != 0 ? -1 : 0)
                 {
                     case 1:
                         foreach (AbstractState<T> state in States)
-                            if (current.WhiteSet.Contains(state) && state.EnterCondition(Entity) && priority < state.Priority)
+                            if (previous.WhiteList.Exists(s => s.Name == state.Name)
+                                && (state.TransitFrom.Count == 0 || state.TransitFrom.Contains(previous))
+                                && state.EnterCondition(Entity) 
+                                && priority < state.Priority)
                             {
                                 priority = state.Priority;
                                 current = state;
@@ -42,16 +45,23 @@ namespace Assets.Scripts.StateMachine
                         break;
                     case -1:
                         foreach (AbstractState<T> state in States)
-                            if (!current.BlackSet.Contains(state) && state.EnterCondition(Entity) && priority < state.Priority)
+                        {
+                            if (previous.BlackList.TrueForAll(s => s.Name != state.Name)
+                                && (state.TransitFrom.Count == 0 || state.TransitFrom.Contains(previous))
+                                && state.EnterCondition(Entity)
+                                && priority < state.Priority)
                             {
                                 priority = state.Priority;
                                 current = state;
                             }
+                        }
                         break;
                     case 0:
                         foreach (AbstractState<T> state in States)
                         {
-                            if (state.EnterCondition(Entity) && priority < state.Priority)
+                            if (state.EnterCondition(Entity)
+                                && (state.TransitFrom.Count == 0 || state.TransitFrom.Contains(previous))
+                                && priority < state.Priority)
                             {
                                 priority = state.Priority;
                                 current = state;
