@@ -9,7 +9,7 @@ on:
         type: string
 
 env:
-  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  UNITY_LICENSE: ${{ secrets.ACTIVATION_LICENSE }}
 
 jobs:
   buildWindows:
