@@ -8,57 +8,57 @@ namespace Assets.Scripts.StateMachine
 {
     public class State<T> : AbstractState<T>
     {
-        public Action<T> OnEnterD;
-        public Action<T> InStateD;
-        public Action<T> OnExitD;
-        public Func<T, bool> EnterConditionD = _ => true;
+        private Action<T> _onEnter;
+        private Action<T> _inState;
+        private Action<T> _onExit;
+        private Func<T, bool> EnterConditionD = _ => true;
 
         public State(string name, ulong priority)
         {
             Name = name;
-            base.priority = priority;
+            base.Priority = priority;
         }
         public State(string name, ulong priority, Action<T> stateLogic)
         {
             Name = name;
-            InStateD = stateLogic;
-            base.priority = priority;
+            _inState = stateLogic;
+            base.Priority = priority;
         }
         public State(string name, ulong priority, Action<T> stateLogic, Func<T, bool> enterCondition)
         {
             Name = name;
-            InStateD = stateLogic;
+            _inState = stateLogic;
             EnterConditionD = enterCondition;
-            base.priority = priority;
+            base.Priority = priority;
         }
         public State(string name, ulong priority, Action<T> stateLogic, Action<T> onStateEnter, Action<T> onStateExit)
         {
             Name = name;
-            InStateD = stateLogic;
-            OnEnterD = onStateEnter;
-            OnExitD = onStateExit;
-            base.priority = priority;
+            _inState = stateLogic;
+            _onEnter = onStateEnter;
+            _onExit = onStateExit;
+            base.Priority = priority;
         }
         public State(string name, ulong priority, Action<T> stateLogic, Action<T> onStateEnter, Action<T> onStateExit, Func<T, bool> enterCondition)
         {
             Name = name;
-            InStateD = stateLogic;
-            OnEnterD = onStateEnter;
-            OnExitD = onStateExit;
+            _inState = stateLogic;
+            _onEnter = onStateEnter;
+            _onExit = onStateExit;
             EnterConditionD = enterCondition;
-            base.priority = priority;
+            base.Priority = priority;
         }
-        override public void OnEnter(T entity)
+        override protected void OnEnterLogic(T entity)
         {
-            OnEnterD?.Invoke(entity);
+            _onEnter?.Invoke(entity);
         }
-        override public void InState(T entity)
+        override protected void OnUpdateLogic(T entity)
         {
-            InStateD?.Invoke(entity);
+            _inState?.Invoke(entity);
         }
-        override public void OnExit(T entity)
+        override protected void OnExitLogic(T entity)
         {
-            OnExitD?.Invoke(entity);
+            _onExit?.Invoke(entity);
         }
         override public bool EnterCondition(T entity)
         {
@@ -72,17 +72,22 @@ namespace Assets.Scripts.StateMachine
         }
         public State<T> SetOnStateEnter(Action<T> enterLogic)
         {
-            OnEnterD = enterLogic;
+            _onEnter = enterLogic;
             return this;
         }
         public State<T> SetStateLogic(Action<T> stateLogic)
         {
-            InStateD = stateLogic;
+            _inState = stateLogic;
             return this;
         }
         public State<T> SetOnStateExit(Action<T> onStateExit)
         {
-            OnExitD = onStateExit;
+            _onExit = onStateExit;
+            return this;
+        }
+        public new State<T> AddModifier(StateModifier<T> modifier)
+        {
+            base.AddModifier(modifier);
             return this;
         }
         public new State<T> ToBlack(AbstractState<T> state)
@@ -93,6 +98,11 @@ namespace Assets.Scripts.StateMachine
         public new State<T> ToWhite(AbstractState<T> state)
         {
             base.ToWhite(state);
+            return this;
+        }
+        public new State<T> ToTransitFrom(AbstractState<T> state)
+        {
+            base.ToTransitFrom(state);
             return this;
         }
         public State<T> SetEnterCondition(Func<T, bool> con)

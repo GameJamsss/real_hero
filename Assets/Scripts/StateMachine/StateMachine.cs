@@ -1,11 +1,9 @@
 using Assets.Scripts.StateMachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine<T>
+public class StateMachine<T> : MonoBehaviour
 {
-    private AbstractState<T> currentState = State<T>.GetEmpty();
+    public AbstractState<T> currentState = State<T>.GetEmpty();
     private StateManager<T> Manager;
     private T Entity;
     public StateMachine(StateManager<T> manager)
@@ -31,11 +29,11 @@ public class StateMachine<T>
         {
             previous.OnExit(Entity);
             currentState.OnEnter(Entity);
-            currentState.InState(Entity);
+            currentState.OnUpdate(Entity);
         }
         else
         {
-            currentState.InState(Entity);
+            currentState.OnUpdate(Entity);
         }
     }
 }
