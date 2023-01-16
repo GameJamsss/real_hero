@@ -1,5 +1,6 @@
 /Packages/*
 
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -11,6 +12,8 @@
 !/[Aa]ssets/**/*.meta
 
 ExportedObj/
+.vs/*
+.UserSettings/
 .consulo/
 *.csproj
 *.unityproj

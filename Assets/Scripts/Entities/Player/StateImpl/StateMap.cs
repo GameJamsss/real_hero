@@ -2,7 +2,6 @@
 using Assets.Scripts.StateMachine;
 using Assets.Scripts.Utils;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Assets.Scripts.Entities.Player.StateImpl
 {
@@ -16,12 +15,12 @@ namespace Assets.Scripts.Entities.Player.StateImpl
 
         public static State<TestPlayer> Move = new State<TestPlayer>("Move", (ulong) StatePriority.Move)
             .SetEnterCondition(entity => 
-                Input.GetButton("Horizontal") 
+                Input.GetButton("Horizontal")
                 && Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask))
             .AddModifier(gmm);
 
         public static State<TestPlayer> Jump = new State<TestPlayer>("Jump", (ulong) StatePriority.Jump)
-            .SetEnterCondition(entity => (Input.GetButton("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps))
+            .SetEnterCondition(entity => Input.GetButton("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps)
             .SetOnStateEnter(entity =>
                 entity.AirJumpsCounter += Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask) ? 0 : 1
             )

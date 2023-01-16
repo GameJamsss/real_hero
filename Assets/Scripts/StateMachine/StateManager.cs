@@ -36,7 +36,7 @@ namespace Assets.Scripts.StateMachine
                         foreach (AbstractState<T> state in States)
                             if (previous.WhiteList.Exists(s => s.Name == state.Name)
                                 && (state.TransitFrom.Count == 0 || state.TransitFrom.Contains(previous))
-                                && state.EnterCondition(Entity) 
+                                && state.EnterCondition(Entity)
                                 && priority < state.Priority)
                             {
                                 priority = state.Priority;
