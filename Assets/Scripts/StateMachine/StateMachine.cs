@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StateMachine<T> : MonoBehaviour
 {
-    public AbstractState<T> currentState = State<T>.GetEmpty();
+    public AbstractState<T> CurrentState = State<T>.GetEmpty();
     private StateManager<T> Manager;
     private T Entity;
     public StateMachine(StateManager<T> manager)
@@ -24,16 +24,16 @@ public class StateMachine<T> : MonoBehaviour
 
     public void Run()
     {
-        AbstractState<T> previous = currentState;
-        if (Manager.GetNewState(ref currentState))
+        AbstractState<T> previous = CurrentState;
+        if (Manager.GetNewState(ref CurrentState))
         {
             previous.OnExit(Entity);
-            currentState.OnEnter(Entity);
-            currentState.OnUpdate(Entity);
+            CurrentState.OnEnter(Entity);
+            CurrentState.OnUpdate(Entity);
         }
         else
         {
-            currentState.OnUpdate(Entity);
+            CurrentState.OnUpdate(Entity);
         }
     }
 }

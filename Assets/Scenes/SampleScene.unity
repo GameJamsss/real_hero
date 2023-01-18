@@ -149,6 +149,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &162316241
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162316236}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,9 +367,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5059045310621808372, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    - target: {fileID: 5154579175268392635, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
+      propertyPath: Velocity
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154579175268392635, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
+      propertyPath: Acceleration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154579175268392635, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
+      propertyPath: Decceleration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154579175268392635, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
+      propertyPath: VelocityPower
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5154579175268392635, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
       propertyPath: GroundMask.m_Bits
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093453235647169799, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093453235647169799, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093453235647169799, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6185130405884480299, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
       propertyPath: m_Name
