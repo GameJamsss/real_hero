@@ -1,9 +1,7 @@
 ﻿using Assets.Scripts.StateMachine;
-using Assets.Scripts.Utils;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
-namespace Assets.Scripts.Entities.Player
+namespace Assets.Scripts.Entities.PlayerEntity
 {
     public class Player : MonoBehaviour
     {
@@ -14,10 +12,7 @@ namespace Assets.Scripts.Entities.Player
         [SerializeField] public float Acceleration = 2.0f;
 
         [Header("Decceleration")]
-        [SerializeField] public float Decceleration = 4.0f;
-
-        [Header("Velocity power")]
-        [SerializeField] public float VelocityPower = 4.0f;
+        [SerializeField] public float Decceleration = 2.0f;
 
         [Header("Jump height")]
         [SerializeField] public float JumpHeight = 5.0f;
@@ -25,24 +20,58 @@ namespace Assets.Scripts.Entities.Player
         [Header("Max air jumps")]
         [SerializeField] public int MaxAirJumps = 1;
 
+        [Header("Fall gravity scale")]
+        [SerializeField] public float FallGravityScale = 2f;
+
+        [Header("The time need to be passed before new dash in milliseconds")]
+        [SerializeField] public float DashOffsetSec = 0.5f;
+
+        [Header("How long player will be dashing without control in milliseconds")]
+        [SerializeField] public float UncontrollableDashTimeSec = 0.2f;
+
+        [Header("How long player will be dashing in milliseconds overall")]
+        [SerializeField] public float DashTimeMilliAll = 0.4f;
+
+        [Header("Dash power")]
+        [SerializeField] public float DashPower = 8f;
+
         [Header("Ground Layer Mask")]
         [SerializeField] public LayerMask GroundMask;
 
         [HideInInspector] public Collider2D Collider;
 
+        [HideInInspector] public Animation Animation;
+
         [HideInInspector] public Rigidbody2D Rigidbody;
 
+        [HideInInspector] public GameObject AttackObjectTest;
+
         [HideInInspector] public int AirJumpsCounter = 0;
+
+        [HideInInspector] public float CurrentDashTimeSec = 0f;
+
+        [HideInInspector] public float CurrentDashOffsetSec = 0f;
+
+        [HideInInspector] public float LastDashVector = 0f;
 
         StateMachine<Player> fsm;
 
         void Start()
         {
+            
+            Animation animation = gameObject.GetComponent<Animation>();
+            if (animation) Animation = animation; else Debug.LogError(gameObject.name + " need Animation");
+
             Collider2D col = gameObject.GetComponent<Collider2D>();
-            if (col) Collider = col; else Debug.LogError("Player need Collider2d");
+            if (col) Collider = col; else Debug.LogError(gameObject.name + " need Collider2d");
 
             Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
-            if (rb) Rigidbody = rb; else Debug.LogError("Player need Rigidbody2d");
+            if (rb) Rigidbody = rb; else Debug.LogError(gameObject.name + " need Rigidbody2d");
+
+            GameObject attackArea = GameObject.Find("AttackArea");
+            if (attackArea) AttackObjectTest = attackArea; else Debug.LogError("Need attack area object on: " + gameObject.name);
+
+            LastDashVector = transform.localScale.x;
 
             fsm = new StateMachine<Player>(
                 new StateManager<Player>(this)
@@ -51,13 +80,14 @@ namespace Assets.Scripts.Entities.Player
                 .AddState(StateMap.Jump)
                 .AddState(StateMap.Fall)
                 .AddState(StateMap.MoveUp)
+                .AddState(StateMap.Dash)
             );
         }
 
         void Update()
         {
             fsm.Run();
-            Debug.Log(fsm.CurrentState.Name);
+            //Debug.Log(fsm.CurrentState.Name);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Assets.Scripts.Utils
 {
     public class Physic
     {
-        public class UnityUtils : MonoBehaviour
+        public class UnityUtils
         {
             public bool IsColliderTouchingGround (Collider2D collider, LayerMask lm, float extraRaycastRange = 0.1f)
             {

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.StateMachine
 {
-    public abstract class StateModifier<T> : MonoBehaviour
+    public abstract class StateModifier<T>
     {
         abstract public void UpdateModify(T entity);
         abstract public void EnterModify(T entity);

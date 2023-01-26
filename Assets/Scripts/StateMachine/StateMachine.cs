@@ -1,7 +1,7 @@
 using Assets.Scripts.StateMachine;
 using UnityEngine;
 
-public class StateMachine<T> : MonoBehaviour
+public class StateMachine<T>
 {
     public AbstractState<T> CurrentState = State<T>.GetEmpty();
     private StateManager<T> Manager;

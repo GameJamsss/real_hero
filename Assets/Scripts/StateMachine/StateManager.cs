@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.StateMachine
 {
-    public class StateManager<T> : MonoBehaviour
+    public class StateManager<T>
     {
         private List<AbstractState<T>> States;
         public T Entity;

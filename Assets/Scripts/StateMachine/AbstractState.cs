@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.StateMachine
 {
     
-    public abstract class AbstractState<T> : MonoBehaviour
+    public abstract class AbstractState<T>
     {
         public List<AbstractState<T>> BlackList = new List<AbstractState<T>>();
         public List<AbstractState<T>> WhiteList = new List<AbstractState<T>>();
