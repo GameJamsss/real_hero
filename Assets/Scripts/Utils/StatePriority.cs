@@ -10,7 +10,8 @@
         Attack1 = 6,
         Attack2 = 7,
         Attack3 = 8,
-        Dash = 9,
+        Damage = 9,
+        Dash = 10,
     }
 
 }

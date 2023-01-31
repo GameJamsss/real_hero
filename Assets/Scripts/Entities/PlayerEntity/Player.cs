@@ -35,6 +35,12 @@ namespace Assets.Scripts.Entities.PlayerEntity
         [Header("Dash power")]
         [SerializeField] public float DashPower = 8f;
 
+        [Header("Stun duration in seconds")]
+        [SerializeField] public float StunDuration = 2f;
+
+        [Header("Knock back power")]
+        [SerializeField] public float KnockBackPower = 25f;
+
         [Header("Ground Layer Mask")]
         [SerializeField] public LayerMask GroundMask;
 
@@ -53,6 +59,8 @@ namespace Assets.Scripts.Entities.PlayerEntity
         [HideInInspector] public float CurrentDashOffsetSec = 0f;
 
         [HideInInspector] public float LastDashVector = 0f;
+
+        [HideInInspector] public float CurrentStunDuration = 0f;
 
         StateMachine<Player> fsm;
 
@@ -80,6 +88,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
                 .AddState(StateMap.Jump)
                 .AddState(StateMap.Fall)
                 .AddState(StateMap.MoveUp)
+                .AddState(StateMap.Damage)
                 .AddState(StateMap.Dash)
             );
         }

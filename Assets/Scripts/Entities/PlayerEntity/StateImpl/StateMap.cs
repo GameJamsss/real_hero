@@ -1,7 +1,11 @@
-﻿using Assets.Scripts.Entities.PlayerEntity.ModifierImpl;
+﻿using Assets.Scripts.Domain;
+using Assets.Scripts.Entities.PlayerEntity.ModifierImpl;
 using Assets.Scripts.StateMachine;
 using Assets.Scripts.Utils;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Assets.Scripts.Entities.PlayerEntity
 {
@@ -77,6 +81,40 @@ namespace Assets.Scripts.Entities.PlayerEntity
                 }
             );
 
+        public static State<Player> Damage = new State<Player>("Damage", (ulong) StatePriority.Damage)
+            .SetEnterCondition(entity =>
+                {
+                    List<Collider2D> colliders = new List<Collider2D>();
+                    entity.Collider.OverlapCollider(new ContactFilter2D().NoFilter(), colliders);
+                    return colliders.Exists(col => col.gameObject.GetComponent<Damagable>() != null);
+                }
+            )
+            .SetOnStateEnter(entity =>
+                {
+                    Damage.Lock = true;
+                    entity.CurrentStunDuration = 0f;
+                    List<Collider2D> colliders = new List<Collider2D>();
+                    entity.Collider.OverlapCollider(new ContactFilter2D().NoFilter(), colliders);
+                    GameObject goDamageZone = colliders
+                        .Select(col => col.gameObject)
+                        .ToList()
+                        .Find(dmg => dmg.GetComponent<Damagable>() != null);
+                    // deal damage here
+                    entity.Rigidbody.velocity = 
+                        new Vector2((entity.transform.position.x - goDamageZone.transform.position.x) * entity.KnockBackPower, 3);
+                }
+            )
+            .SetStateLogic(entity =>
+                {
+                    entity.CurrentStunDuration += Time.deltaTime;
+                    if (entity.CurrentStunDuration > entity.StunDuration)
+                    {
+                        Damage.Lock = false;
+                    }
+                }
+            )
+            .AddModifier(dorm);
+
         //public static State<Player> Attack1 = new State<Player>("Attack1", (ulong) StatePriority.Attack1)
         //    .SetOnStateEnter(entity => Attack1.Lock = true)
         //    .SetStateLogic(entity => 
@@ -90,24 +128,24 @@ namespace Assets.Scripts.Entities.PlayerEntity
         //public static State<Player> Attack2 = new State<Player>("Attack2", (ulong) StatePriority.Attack2)
         //    .SetOnStateEnter(entity => 
         //        { 
-                    
+
         //            Attack2.Lock = true; 
         //        } 
         //    )
         //    .SetStateLogic(entity => 
         //        {
-            
+
         //        }
         //    )
         //    .SetEnterCondition(entity => true)
         //    .AddModifier(gam)
         //    .AddModifier(sm);
-        
+
         //public static State<Player> Attack3 = new State<Player>("Attack3", (ulong) StatePriority.Attack3)
         //    .SetOnStateEnter(entity => Attack3.Lock = true)
         //    .SetStateLogic(entity => 
         //    {
-            
+
         //    })
         //    .SetEnterCondition(entity => true)
         //    .AddModifier(gam)
