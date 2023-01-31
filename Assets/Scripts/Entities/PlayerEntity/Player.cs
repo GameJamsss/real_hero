@@ -39,7 +39,10 @@ namespace Assets.Scripts.Entities.PlayerEntity
         [SerializeField] public float StunDuration = 2f;
 
         [Header("Knock back power")]
-        [SerializeField] public float KnockBackPower = 25f;
+        [SerializeField] public float KnockBackPower = 2f;
+
+        [Header("Knock up power")]
+        [SerializeField] public float KnockUpPower = 2f;
 
         [Header("Ground Layer Mask")]
         [SerializeField] public LayerMask GroundMask;

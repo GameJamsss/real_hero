@@ -99,9 +99,16 @@ namespace Assets.Scripts.Entities.PlayerEntity
                         .Select(col => col.gameObject)
                         .ToList()
                         .Find(dmg => dmg.GetComponent<Damagable>() != null);
-                    // deal damage here
-                    entity.Rigidbody.velocity = 
-                        new Vector2((entity.transform.position.x - goDamageZone.transform.position.x) * entity.KnockBackPower, 3);
+                    if (goDamageZone != null)
+                    {
+                        // deal damage here
+                        entity.Rigidbody.velocity =
+                            new Vector2(
+                                (
+                                    entity.transform.position.x - goDamageZone.transform.position.x) * entity.KnockBackPower,
+                                    entity.KnockUpPower
+                                );
+                    }
                 }
             )
             .SetStateLogic(entity =>

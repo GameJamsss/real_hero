@@ -7,7 +7,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
     {
         public override void EnterModify(Player entity)
         {
-            entity.Rigidbody.velocity = Vector2.up * entity.JumpHeight;
+            entity.Rigidbody.velocity = new Vector2(entity.Rigidbody.velocity.x, entity.JumpHeight);
             //entity.Rigidbody.AddForce(Vector2.up * entity.Rigidbody.velocity.y * (1 - entity.JumpHeight), ForceMode2D.Impulse);
         }
 
