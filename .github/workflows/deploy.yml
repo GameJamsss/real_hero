@@ -1,13 +1,8 @@
 name: GameCI Build and deploy 🎮
 
 on:
-  workflow_dispatch:
-    inputs:
-      tags:
-        description: 'Tag'
-        required: true 
-        type: string
-
+  workflow_dispatch
+    
 env:
   UNITY_LICENSE: ${{ secrets.ACTIVATION_LICENSE }}
 
