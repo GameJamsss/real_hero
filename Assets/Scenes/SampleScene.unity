@@ -147,12 +147,16 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5154579175268392635, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
+      propertyPath: StunDuration
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154579175268392635, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
       propertyPath: Decceleration
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5154579175268392635, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
       propertyPath: KnockBackPower
-      value: 20
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5154579175268392635, guid: 507b2e462dba7f54187aa48a2c7db831, type: 3}
       propertyPath: DashOffsetMilli
