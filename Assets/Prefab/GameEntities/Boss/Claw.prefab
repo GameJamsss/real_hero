@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5553823648311592446}
   - component: {fileID: 5553823648311592433}
   - component: {fileID: 5553823648311592447}
+  - component: {fileID: 3897594826535631497}
   m_Layer: 0
   m_Name: Claw
   m_TagString: Untagged
@@ -106,6 +107,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3897594826535631497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5553823648311592432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef181b2664828db4a9ecda77bc782063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageZone: {fileID: 4722405626668201779}
 --- !u!1 &6684283928170626103
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7871297124039307187}
   - component: {fileID: 5361498279764631351}
+  - component: {fileID: 4722405626668201779}
   m_Layer: 0
   m_Name: HitZone
   m_TagString: Untagged
@@ -164,3 +179,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4722405626668201779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684283928170626103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2c5e0716ee38b479cecb8b2a27bd7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePower: 1

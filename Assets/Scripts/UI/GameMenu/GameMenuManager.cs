@@ -24,7 +24,7 @@ public class GameMenuManager : MonoBehaviour
     private AudioSource _audioSource;
 
     private float _curTimer;
-    private int _curHits = 1;
+    private int _curHitsCount = 1;
     private bool _wasHit;
     private int _curPoints;
 
@@ -39,9 +39,9 @@ public class GameMenuManager : MonoBehaviour
 
         _points.text = _curPoints.ToString();
         _hits.text = "x1";
-        _timer.text = _hitsCooldownValue.ToString();
+        _timer.text = "0:0";
 
-        InvokeRepeating("SubtractHits", 0f, 1f);
+        InvokeRepeating("SubtractHits", 0f, _hitsCooldownValue);
     }
 
     //delete
@@ -58,12 +58,12 @@ public class GameMenuManager : MonoBehaviour
     public void AddPointsAndHits(int points, int hits = 1)
     {
   
-        _curHits += hits;
-        _curPoints += (points * _curHits);
+        _curHitsCount += hits;
+        _curPoints += (points * _curHitsCount);
         HitsCooldown();
 
         _points.text = _curPoints.ToString();
-        _hits.text = "x" + _curHits.ToString();
+        _hits.text = "x" + _curHitsCount.ToString();
     }
 
     public void ShowWinPanel()
@@ -114,11 +114,11 @@ public class GameMenuManager : MonoBehaviour
     {
         if (!_wasHit)
         {
-            _curHits--;
-            if (_curHits < 1)
-                _curHits = 1;
+            _curHitsCount--;
+            if (_curHitsCount < 1)
+                _curHitsCount = 1;
 
-            _hits.text = "x" + _curHits.ToString();
+            _hits.text = "x" + _curHitsCount.ToString();
         }
     }
 }

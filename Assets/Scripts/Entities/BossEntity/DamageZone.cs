@@ -10,9 +10,8 @@ namespace Assets.Scripts.Entities
 {
     internal class DamageZone : MonoBehaviour, Damagable
     {
-
         [Header("Damage power")]
-        [SerializeField] public int DamagePower = 1;
+        [SerializeField] private int damagePower = 1;
 
         public void Disable()
         {
@@ -26,7 +25,7 @@ namespace Assets.Scripts.Entities
 
         public int GetDamage()
         {
-            return DamagePower;
+            return damagePower;
         }
     }
 }
