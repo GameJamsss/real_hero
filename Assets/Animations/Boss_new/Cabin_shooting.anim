@@ -78,13 +78,6 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: c89f90a00262d9245995b433d169e37d, type: 3}
-    attribute: m_Sprite
-    path: FrontClaws
-    classID: 212
-    script: {fileID: 0}
-  - curve:
-    - time: 0
       value: {fileID: 21300000, guid: 403f4ad0b607b044c9108c34f2f993c8, type: 3}
     attribute: m_Sprite
     path: MediumClaws
@@ -113,13 +106,6 @@ AnimationClip:
       isPPtrCurve: 1
     - serializedVersion: 2
       path: 1552233065
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
-      isPPtrCurve: 1
-    - serializedVersion: 2
-      path: 1649293880
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -163,7 +149,6 @@ AnimationClip:
     - {fileID: 21300000, guid: d3432cd48eb67294b952a89b1bfda3ad, type: 3}
     - {fileID: 21300000, guid: db072acff537818478cb4a24ca40b49b, type: 3}
     - {fileID: 21300000, guid: be24ce86328b2754191aa3d88c77ebb0, type: 3}
-    - {fileID: 21300000, guid: c89f90a00262d9245995b433d169e37d, type: 3}
     - {fileID: 21300000, guid: 403f4ad0b607b044c9108c34f2f993c8, type: 3}
     - {fileID: 21300000, guid: 51c85e3320ac1d046a3d5cc02a669d26, type: 3}
   m_AnimationClipSettings:
