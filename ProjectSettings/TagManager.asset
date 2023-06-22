@@ -41,10 +41,16 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Bg
+  - name: BgBack
     uniqueID: 2321656131
     locked: 0
-  - name: Boss
+  - name: BossBack
+    uniqueID: 2170448813
+    locked: 0
+  - name: BgFront
+    uniqueID: 3415435335
+    locked: 0
+  - name: BossFront
     uniqueID: 3808646461
     locked: 0
   - name: Player

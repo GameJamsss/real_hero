@@ -115,7 +115,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Wires_atlas_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 38
+        width: 278
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce667ac123278f14793c2685bdfa3d9c
+      internalID: 486926390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wires_atlas_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 44
+        width: 254
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f31e8a4339826f4790eb1ad630c1cb6
+      internalID: -134486127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wires_atlas_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5
+        width: 278
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57bc5cc72c8ebfd41b7ae6f5a930feaf
+      internalID: -462161036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wires_atlas_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 14
+        width: 254
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b62f14a3f604d347b0b9c713c02839b
+      internalID: 1547156174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +210,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Wires_atlas_3: 1547156174
+      Wires_atlas_1: -134486127
+      Wires_atlas_0: 486926390
+      Wires_atlas_2: -462161036
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
