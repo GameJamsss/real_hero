@@ -19,11 +19,17 @@ namespace Assets.Scripts.Entities.PlayerEntity
         private static readonly DashOffsetResetModifier dorm = new DashOffsetResetModifier();
 
         public static State<Player> Idle = new State<Player>("Idle", (ulong) StatePriority.Idle)
-            .SetOnStateEnter(e => { e.AirJumpsCounter = 0; })
+            .SetOnStateEnter(e => {
+                e.AirJumpsCounter = 0;
+                e.Animation.Play("Idle");
+            })
             .AddModifier(dorm)
             .AddModifier(sm);
 
         public static State<Player> Move = new State<Player>("Move", (ulong) StatePriority.Move)
+            .SetOnStateEnter(e => {
+                e.Animation.Play("Run");
+            })
             .SetEnterCondition(entity => Input.GetButton("Horizontal"))
             .AddModifier(dorm)
             .AddModifier(gmm);
@@ -101,7 +107,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
                         .Find(dmg => dmg.GetComponent<Damagable>() != null);
                     if (goDamageZone != null)
                     {
-                        // deal damage here
+                        entity.Damaged(goDamageZone.GetComponent<Damagable>().GetDamage());
                         entity.Rigidbody.velocity =
                             new Vector2(
                                 (
@@ -122,15 +128,20 @@ namespace Assets.Scripts.Entities.PlayerEntity
             )
             .AddModifier(dorm);
 
-        //public static State<Player> Attack1 = new State<Player>("Attack1", (ulong) StatePriority.Attack1)
-        //    .SetOnStateEnter(entity => Attack1.Lock = true)
-        //    .SetStateLogic(entity => 
-        //    {
-        //        float firstAttackDelayTest = 2.0f;
-        //    })
-        //    .SetEnterCondition(entity => true)
-        //    .AddModifier(gam)
-        //    .AddModifier(sm);
+       //  public static State<Player> Attack1 = new State<Player>("Attack1", (ulong) StatePriority.Attack1)
+       //      .SetOnStateEnter(entity => 
+       //
+       //  {
+       //      Attack1.Lock = true;
+       // }
+       //      )
+       //      .SetStateLogic(entity => 
+       //      {
+       //          float firstAttackDelayTest = 2.0f;
+       //      })
+       //      .SetEnterCondition(entity => Input.GetButton("Fire1"))
+       //      .AddModifier(gam)
+       //      .AddModifier(sm);
 
         //public static State<Player> Attack2 = new State<Player>("Attack2", (ulong) StatePriority.Attack2)
         //    .SetOnStateEnter(entity => 

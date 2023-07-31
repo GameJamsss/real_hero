@@ -11,7 +11,7 @@ public class PlayerNameInput : MonoBehaviour
     [SerializeField] private GameObject _errorFirstButton;
     [SerializeField] private MainMenu _mainMenu;
 
-    private HashSet<string> _forbiddenWords = new HashSet<string>() { "сука", "блять", "хуй", "пизда", "ебать" }; //i'm sorry :c
+    private HashSet<string> _forbiddenWords = new HashSet<string>() { "СЃСѓРєР°", "Р±Р»СЏС‚СЊ", "С…СѓР№", "РїРёР·РґР°", "РµР±Р°С‚СЊ" }; //i'm sorry :c
 
     private void OnEnable()
     {
@@ -35,11 +35,11 @@ public class PlayerNameInput : MonoBehaviour
     {
         if (_nameText.text.Length == 0)
         {
-            SetErrorPanelActive("Имя не может быть пустым");
+            SetErrorPanelActive("РРјСЏ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј");
         }
         else if (_forbiddenWords.Contains(_nameText.text.ToLowerInvariant()))
         {
-            SetErrorPanelActive("Нельзя использовать ненормативную лексику");
+            SetErrorPanelActive("РќРµР»СЊР·СЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РЅРµРЅРѕСЂРјР°С‚РёРІРЅСѓСЋ Р»РµРєСЃРёРєСѓ");
         }
         else
         {

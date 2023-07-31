@@ -27,14 +27,14 @@ public class MainMenu : MonoBehaviour
         _mainPanel.SetActive(false);
         _enterNamePanel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
-        //на букве надо наверное находиться
+        //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         EventSystem.current.SetSelectedGameObject(_enterNameFirstButton);
     }
 
     public void StartGame()
     {
-        //если имя игрока пустое, то выдать ошибку
-        //SceneManager.LoadScene(1);
+        //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+        SceneManager.LoadScene(1);
     }
 
     public void OpenLeaderboard()

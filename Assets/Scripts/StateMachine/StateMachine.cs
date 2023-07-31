@@ -36,4 +36,11 @@ public class StateMachine<T>
             CurrentState.OnUpdate(Entity);
         }
     }
+    
+    public void TransitionTo(AbstractState<T> newState)
+    {
+        CurrentState.OnExit(Entity);
+        CurrentState = newState;
+        newState.OnEnter(Entity);
+    }
 }

@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.StateMachine;
+﻿using System;
+using System.Collections;
+using Assets.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities.PlayerEntity
@@ -49,7 +51,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 
         [HideInInspector] public Collider2D Collider;
 
-        [HideInInspector] public Animation Animation;
+        [HideInInspector] public Animator Animation;
 
         [HideInInspector] public Rigidbody2D Rigidbody;
 
@@ -66,11 +68,21 @@ namespace Assets.Scripts.Entities.PlayerEntity
         [HideInInspector] public float CurrentStunDuration = 0f;
 
         StateMachine<Player> fsm;
+        
+        public GameObject AttackBall;
 
+        public event Action<int> damaged ;
+        
+        public float attackCooldown = 1.0f; // Кулдаун между атаками
+        public float attackDuration = 1.0f; // Длительность атаки
+
+        private bool isAttacking = false;
+        private float cooldownTimer = 0.0f;
+        
         void Start()
         {
             
-            Animation animation = gameObject.GetComponent<Animation>();
+            Animator animation = gameObject.GetComponent<Animator>();
             if (animation) Animation = animation; else Debug.LogError(gameObject.name + " need Animation");
 
             Collider2D col = gameObject.GetComponent<Collider2D>();
@@ -79,8 +91,8 @@ namespace Assets.Scripts.Entities.PlayerEntity
             Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
             if (rb) Rigidbody = rb; else Debug.LogError(gameObject.name + " need Rigidbody2d");
 
-            GameObject attackArea = GameObject.Find("AttackArea");
-            if (attackArea) AttackObjectTest = attackArea; else Debug.LogError("Need attack area object on: " + gameObject.name);
+            //GameObject attackArea = GameObject.Find("AttackArea");
+            //if (attackArea) AttackObjectTest = attackArea; else Debug.LogError("Need attack area object on: " + gameObject.name);
 
             LastDashVector = transform.localScale.x;
 
@@ -100,6 +112,41 @@ namespace Assets.Scripts.Entities.PlayerEntity
         {
             fsm.Run();
             //Debug.Log(fsm.CurrentState.Name);
+            
+            if (Input.GetButton("Fire1"))
+            {
+                Attack();
+            }
+            if (isAttacking)
+            {
+                cooldownTimer -= Time.deltaTime;
+                if (cooldownTimer <= 0)
+                {
+                    isAttacking = false;
+                }
+            }
+        }
+
+        public void Damaged(int damage){
+                damaged?.Invoke(damage);
+        }
+
+        public void Attack()
+        {
+            if (!isAttacking)
+            {
+                isAttacking = true;
+                cooldownTimer = attackCooldown;
+                AttackBall.SetActive(true);
+                StartCoroutine(EndAtack());
+            }
+        }
+        private IEnumerator EndAtack()
+        {
+            // Ждем заданную длительность атаки
+            yield return new WaitForSeconds(attackDuration);
+            // Уничтожаем объект атаки
+            AttackBall.SetActive(false);
         }
     }
 }

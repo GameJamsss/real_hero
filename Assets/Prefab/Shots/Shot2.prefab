@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 925836033871081453}
   - component: {fileID: 4374104131880633624}
   - component: {fileID: 3034234860862217518}
+  - component: {fileID: 844766646338731734}
   m_Layer: 0
   m_Name: Shot2
   m_TagString: Untagged
@@ -71,9 +72,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -486320835
+  m_SortingLayer: 4
+  m_SortingOrder: 35
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -105,3 +106,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &844766646338731734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797930931451339268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e510562cee67734c912c99f30bbae9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

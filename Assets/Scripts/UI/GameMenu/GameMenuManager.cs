@@ -16,10 +16,14 @@ public class GameMenuManager : MonoBehaviour
 
     [Space(20)]
     [Header("Points and Timer")]
-    [SerializeField] private TextMeshProUGUI _timer;
+    [SerializeField] public TextMeshProUGUI _timer;
+    [SerializeField] public TextMeshProUGUI _resultTimer;
+
     [SerializeField] private TextMeshProUGUI _hits;
     [SerializeField] private float _hitsCooldownValue = 3f;
     [SerializeField] private TextMeshProUGUI _points;
+    public HealthBarPlayer playerHealthBar;
+    public HealthBarBoss bossHealthBar;
 
     private AudioSource _audioSource;
 
@@ -50,7 +54,7 @@ public class GameMenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             AddPointsAndHits(1, 1);
 
-        _timer.text = _curTimer.ToString(); //запихнуть в корутин с таймером
+        //_timer.text = _curTimer.ToString(); //Р·Р°РїРёС…РЅСѓС‚СЊ РІ РєРѕСЂСѓС‚РёРЅ СЃ С‚Р°Р№РјРµСЂРѕРј
     }
 
     private GameMenuManager() { }
@@ -68,7 +72,8 @@ public class GameMenuManager : MonoBehaviour
 
     public void ShowWinPanel()
     {
-        HideAllPanels();
+        HideAllPanels();        
+        Time.timeScale = 0;
         _winPanel.SetActive(true);
     }
 
@@ -87,6 +92,7 @@ public class GameMenuManager : MonoBehaviour
     public void ShowDefeatPanel()
     {
         HideAllPanels();
+        Time.timeScale = 0;
         _defeatPanel.SetActive(true);
     }
 
@@ -121,4 +127,6 @@ public class GameMenuManager : MonoBehaviour
             _hits.text = "x" + _curHitsCount.ToString();
         }
     }
+    
+    
 }
