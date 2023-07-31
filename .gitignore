@@ -29,6 +29,7 @@ ExportedObj/
 
 *.apk
 *.unitypackage
+/.vscode
 
 crashlytics-build.properties
 

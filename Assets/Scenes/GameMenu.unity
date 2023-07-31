@@ -420,7 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5163393799703261775}
   boss: {fileID: 1810821910}
-  time: 30
+  time: 0
   uiManager: {fileID: 6192048804014662157}
 --- !u!4 &768566361
 Transform:
