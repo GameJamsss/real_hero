@@ -140,6 +140,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
                 isAttacking = true;
                 cooldownTimer = attackCooldown;
                 AttackBall.SetActive(true);
+                Animation.Play("attack");
                 StartCoroutine(EndAtack());
             }
         }
@@ -147,6 +148,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
         {
             // Ждем заданную длительность атаки
             yield return new WaitForSeconds(attackDuration);
+            Animation.Play("Idle");
             // Уничтожаем объект атаки
             AttackBall.SetActive(false);
         }
@@ -157,6 +159,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
             // Ждем заданную длительность атаки
             yield return new WaitForSeconds(0.1f);
             // Уничтожаем объект атаки
+
             blink.color = Color.white;
         }
 

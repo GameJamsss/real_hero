@@ -1781,6 +1781,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4202812749318009563, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5163393800173074866, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
       propertyPath: m_Name
       value: Hero
@@ -1843,7 +1847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
       propertyPath: attackDuration
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
