@@ -1346,26 +1346,26 @@ MonoBehaviour:
   isHaunt: 0
   CurrentStateAtackCount: 0
   StateAtackCount: 3
-  MinIdleTime: 1
-  MaxIdleTime: 2
+  MinIdleTime: 0.5
+  MaxIdleTime: 1
   IdleTimer: 0
   CurrentIdleTimer: 0
-  CarThrowTimer: 2
+  CarThrowTimer: 1
   CurrentCarThrowTimer: 0
   carThrowCount: 0
   carThrowAnimCount: 0
   isCarThrowPlay: 0
-  NailShotsTimer: 3
+  NailShotsTimer: 1
   CurrentNailShotsTimer: 0
   isNailShotsPlay: 0
-  DefaultAttackTimer: 3
+  DefaultAttackTimer: 1
   CurrentDefaultAttackTimer: 0
   defaultAttacCount: 0
   isDefaultAttackPlay: 0
-  StrongAttacksTimer: 3
+  StrongAttacksTimer: 2
   CurrentStrongAttacksTimer: 0
   earthCount: 3
-  VulnerableTimer: 5
+  VulnerableTimer: 4
   CurrentVulnerableTimer: 0
   isVulnerablePlay: 0
   player: {fileID: 0}
