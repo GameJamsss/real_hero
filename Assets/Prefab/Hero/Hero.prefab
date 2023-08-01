@@ -361,7 +361,7 @@ MonoBehaviour:
   UncontrollableDashTimeSec: 0.2
   DashTimeMilliAll: 0.4
   DashPower: 8
-  StunDuration: 2
+  StunDuration: 1
   KnockBackPower: 2
   KnockUpPower: 2
   GroundMask:
@@ -377,9 +377,10 @@ MonoBehaviour:
   LastDashVector: 0
   CurrentStunDuration: 0
   AttackBall: {fileID: 2337826516107931202}
-  blink: {fileID: 5163393799228000864}
+  spriteRenderer: {fileID: 5163393799228000864}
   attackCooldown: 0.5
   attackDuration: 0.01
+  _flashDuration: 0.1
 --- !u!61 &6620171587779819841
 BoxCollider2D:
   m_ObjectHideFlags: 0

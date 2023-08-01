@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!212 &31162106 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5163393799228000864, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
+  m_PrefabInstance: {fileID: 5163393799703261774}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &124771202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6810759197862290442, guid: e4eef74a734cfd24ca0726cdc671a3c7, type: 3}
@@ -1194,9 +1199,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
-      propertyPath: attackDuration
+      propertyPath: blinkDuration
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 31162106}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
 --- !u!114 &5163393799703261775 stripped

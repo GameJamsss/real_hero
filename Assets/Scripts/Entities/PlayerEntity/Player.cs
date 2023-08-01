@@ -38,7 +38,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		[SerializeField] public float DashPower = 8f;
 
 		[Header("Stun duration in seconds")]
-		[SerializeField] public float StunDuration = 2f;
+		[SerializeField] public float StunDuration = 1.5f;
 
 		[Header("Knock back power")]
 		[SerializeField] public float KnockBackPower = 2f;
@@ -70,15 +70,24 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		StateMachine<Player> fsm;
 
 		public GameObject AttackBall;
-		public SpriteRenderer blink;
+		public SpriteRenderer spriteRenderer;
 
 		public event Action<int> damaged;
 
 		public float attackCooldown = 1.0f; // Кулдаун между атаками
-		public float attackDuration = 1.0f; // Длительность атаки
+		public float attackDuration = 0.01f; // Длительность hitball
+
 
 		private bool isAttacking = false;
 		private float cooldownTimer = 0.0f;
+
+		private Color _blinkColor = Color.red;
+
+		public float _flashDuration = 0.2f;
+
+		private bool _isDamaged = false;
+
+		private Color _originalColor;
 
 		void Start()
 		{
@@ -126,12 +135,15 @@ namespace Assets.Scripts.Entities.PlayerEntity
 					isAttacking = false;
 				}
 			}
+			// TODO: может жестко, но вроде понятно
+			Animation.enabled = !_isDamaged;
 		}
 
 		public void Damaged(int damage)
 		{
 			damaged?.Invoke(damage);
-			StartCoroutine(Blink());
+			StartCoroutine(HurtAndStun());
+			_isDamaged = true;
 		}
 
 		public void Attack()
@@ -140,33 +152,47 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			{
 				isAttacking = true;
 				cooldownTimer = attackCooldown;
-				AttackBall.SetActive(true);
 				Animation.Play("attack");
-				StartCoroutine(EndAtack());
 			}
 		}
-		private IEnumerator EndAtack()
+		private IEnumerator Hit()
 		{
-			// Ждем заданную длительность атаки
+			AttackBall.SetActive(true);
 			yield return new WaitForSeconds(attackDuration);
-			Animation.Play("Idle");
-			// Уничтожаем объект атаки
 			AttackBall.SetActive(false);
+			Animation.Play("Idle");
 		}
 
-		private IEnumerator Blink()
+
+		private IEnumerator HurtAndStun()
 		{
-			blink.color = Color.red;
-			// Ждем заданную длительность атаки
-			yield return new WaitForSeconds(0.1f);
-			// Уничтожаем объект атаки
+			_originalColor = spriteRenderer.color;
 
-			blink.color = Color.white;
+			float elapsedTime = 0f;
+			while (elapsedTime < StunDuration)
+			{
+				FlashEffect();
+
+				elapsedTime += _flashDuration;
+				yield return new WaitForSeconds(_flashDuration);
+			}
+
+			spriteRenderer.color = _originalColor;
+			_isDamaged = false;
 		}
+
+		private void FlashEffect()
+		{
+			if (spriteRenderer.color == _originalColor)
+				spriteRenderer.color = _blinkColor;
+			else
+				spriteRenderer.color = _originalColor;
+		}
+
 
 		public void Death()
 		{
-			blink.color = Color.black;
+			spriteRenderer.color = Color.black;
 		}
 	}
 }
