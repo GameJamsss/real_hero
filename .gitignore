@@ -5,6 +5,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Uu]serSettings/
 
 !/[Aa]ssets/**/*.meta
 
@@ -26,10 +27,13 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+/.vscode
 
 *.apk
 *.unitypackage
 
 crashlytics-build.properties
+
+
 
 
