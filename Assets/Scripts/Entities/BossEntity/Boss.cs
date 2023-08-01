@@ -77,6 +77,7 @@ namespace Assets.Scripts.Entities.BossEntity
         public int Health;
         public bool SecondStage;
         public float SecondStageValue=2f;
+        public SpriteRenderer blink;
 
         void Start()
         {
@@ -292,6 +293,10 @@ namespace Assets.Scripts.Entities.BossEntity
             Health = Health - damage;
             damaged?.Invoke(Health);
             Debug.Log("HEalth boss "+Health);
+        }
+        
+        public void Death(){
+            blink.color = Color.black;
         }
     }
 }

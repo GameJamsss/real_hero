@@ -9,7 +9,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour{
     public Player player;
     public Boss boss;
-    public float time;
+    public float time=0;
+    public bool pause;
+    public GameObject pauseText;
 
     public GameMenuManager uiManager;
 
@@ -22,26 +24,43 @@ public class GameManager : MonoBehaviour{
     public void Sub(){
         player.damaged += uiManager.playerHealthBar.NextImage;
         uiManager.playerHealthBar.death += uiManager.ShowDefeatPanel;
+        uiManager.playerHealthBar.death += player.Death;
+
         boss.damaged += uiManager.bossHealthBar.ChangeValue;
         uiManager.bossHealthBar.death += uiManager.ShowWinPanel;
+        uiManager.bossHealthBar.death += boss.Death;
 
     }
 
     public void Restart(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 
+    public void AfterWin(){
+        Time.timeScale = 1;
+        StaticData.isOpenEnterNameScreen = true;
+        StaticData.isCurrentTime=FormatTime(time);
+        SceneManager.LoadScene(0);
+    }
+
+    
     private void Update(){
-        if (time >= 0){
-            time = time - Time.deltaTime;
-            Debug.Log("TIME "+FormatTime(time));
+            time = time + Time.deltaTime;
             uiManager._timer.text = FormatTime(time);
             uiManager._resultTimer.text = FormatTime(time);
-        }
-        else{
-            uiManager.ShowDefeatPanel();
-        }
+            if (Input.GetKeyDown(KeyCode.P)){
+                pause = !pause;
+                if (pause){
+                    Time.timeScale = 0;
+                    pauseText.SetActive(true);
+                }
+                else{
+                    Time.timeScale = 1;
+                    pauseText.SetActive(false);
+                }
+            }
+
     }
     
     public static string FormatTime(float timeInSeconds)

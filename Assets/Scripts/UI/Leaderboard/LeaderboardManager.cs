@@ -14,16 +14,15 @@ public class LeaderboardManager : MonoBehaviour
         //delete old data
         ClearLeadboard();
         //create new and set new data
-        for (int i = 0; i < 7; i++)
-        {
-            AddNewUserToList();
-        }       
+        foreach (var playerData in StaticData.playersData){
+            AddNewUserToList(playerData.name,playerData.time);
+        }
     }
 
-    private void AddNewUserToList()
+    private void AddNewUserToList(string player,string time)
     {
         var newUser = Instantiate(_userDataPref, _userPanel.transform);
-        newUser.SetData("Bob", "3291", "1:30");
+        newUser.SetData(player,  time);
         _users.Add(newUser);
     }
 

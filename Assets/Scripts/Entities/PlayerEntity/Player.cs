@@ -70,6 +70,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
         StateMachine<Player> fsm;
         
         public GameObject AttackBall;
+        public SpriteRenderer blink;
 
         public event Action<int> damaged ;
         
@@ -129,6 +130,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 
         public void Damaged(int damage){
                 damaged?.Invoke(damage);
+                StartCoroutine(Blink());
         }
 
         public void Attack()
@@ -147,6 +149,19 @@ namespace Assets.Scripts.Entities.PlayerEntity
             yield return new WaitForSeconds(attackDuration);
             // Уничтожаем объект атаки
             AttackBall.SetActive(false);
+        }
+        
+        private IEnumerator Blink()
+        {
+            blink.color=Color.red;
+            // Ждем заданную длительность атаки
+            yield return new WaitForSeconds(0.1f);
+            // Уничтожаем объект атаки
+            blink.color = Color.white;
+        }
+
+        public void Death(){
+            blink.color = Color.black;
         }
     }
 }

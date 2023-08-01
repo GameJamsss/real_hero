@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -43,7 +44,8 @@ public class PlayerNameInput : MonoBehaviour
         }
         else
         {
-            _mainMenu.StartGame();
+            StaticData.playersData.Add(new PlayerData(_nameText.text,StaticData.isCurrentTime));
+            //_mainMenu.StartGame();
         }
     }
 

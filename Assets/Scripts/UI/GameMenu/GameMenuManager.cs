@@ -24,6 +24,7 @@ public class GameMenuManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _points;
     public HealthBarPlayer playerHealthBar;
     public HealthBarBoss bossHealthBar;
+    public AudioSource mainMusic;
 
     private AudioSource _audioSource;
 
@@ -72,6 +73,7 @@ public class GameMenuManager : MonoBehaviour
 
     public void ShowWinPanel()
     {
+        mainMusic.Stop();
         HideAllPanels();        
         Time.timeScale = 0;
         _winPanel.SetActive(true);
@@ -91,6 +93,7 @@ public class GameMenuManager : MonoBehaviour
 
     public void ShowDefeatPanel()
     {
+        mainMusic.Stop();
         HideAllPanels();
         Time.timeScale = 0;
         _defeatPanel.SetActive(true);

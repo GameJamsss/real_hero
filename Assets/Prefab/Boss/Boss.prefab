@@ -807,7 +807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6717078940288497832
 Transform:
   m_ObjectHideFlags: 0
@@ -862,6 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 5702978366305200773}
+  blink: {fileID: 6900473719278959999}
 --- !u!1 &5715104756102833545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,6 +1043,7 @@ MonoBehaviour:
   NailMarker: {fileID: 6279369702611086639, guid: 9d2cc676b46e95b4eadc36c263264a5a, type: 3}
   pointToSpawnEarth: {fileID: 5715104756102833545}
   earth: {fileID: 1437894153014483314, guid: 8543263a7b188e44f8bc1d161d6dc4b7, type: 3}
+  hitbox: {fileID: 2658078711016980148}
   currentNailMarker: {fileID: 0}
   isIdle: 0
   isDefaultAttack: 0
@@ -1079,6 +1081,9 @@ MonoBehaviour:
   HitBox: {fileID: 4107470902917881641}
   Animation: {fileID: 6900473719891567222}
   Health: 100
+  SecondStage: 0
+  SecondStageValue: 2
+  blink: {fileID: 6900473719278959999}
 --- !u!95 &6900473719891567222
 Animator:
   serializedVersion: 5

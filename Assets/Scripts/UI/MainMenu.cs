@@ -20,6 +20,10 @@ public class MainMenu : MonoBehaviour
         _mainPanel.SetActive(true);
         _leaderboardPanel.SetActive(false);
         _enterNamePanel.SetActive(false);
+        if (StaticData.isOpenEnterNameScreen){
+            _enterNamePanel.SetActive(true);
+        }
+
     }
 
     public void OpenEnterName()
