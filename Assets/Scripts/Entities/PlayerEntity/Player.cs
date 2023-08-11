@@ -39,8 +39,8 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		[Header("Dash power")]
 		[SerializeField] public float DashPower = 8f;
 
-		[Header("Stun duration in seconds")]
-		[SerializeField] public float StunDuration = 1.5f;
+		[Header("blinkingDuration duration in seconds")]
+		[SerializeField] public float blinkingDuration = 0.8f;
 
 		[Header("Knock back power")]
 		[SerializeField] public float KnockBackPower = 2f;
@@ -92,7 +92,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		[SerializeField]
 		public Material blinkMaterial;
 
-		public float _flashDuration = 0.2f;
+		public float _flashDuration = 0.3f;
 
 		public bool _isDamaged = false;
 
@@ -101,8 +101,11 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		public AudioSource walk;
 		public AudioClip[] walkSteps;
 		public Boss Boss;
+
+		private float _walkAudioMultiplier = 5.0f;
 		void Start()
 		{
+
 			originalMaterial = spriteRenderer.material;
 
 			Animator animation = gameObject.GetComponent<Animator>();
@@ -184,7 +187,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		private IEnumerator HurtAndStun()
 		{
 			float elapsedTime = 0f;
-			while (elapsedTime < StunDuration)
+			while (elapsedTime < blinkingDuration)
 			{
 				FlashEffect();
 
@@ -221,6 +224,8 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		{
 			walk.clip = walkSteps[Random.Range(0, walkSteps.Length)];
 			walk.Play();
+			//TODO: Volume level should be higher
+			walk.volume *= _walkAudioMultiplier;
 		}
 
 		public void PlayDash()
