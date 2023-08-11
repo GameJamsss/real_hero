@@ -1167,8 +1167,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2681043581468758153, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.882552
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681043581468758153, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.403063
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681043581468758153, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.59
+      value: -0.3211
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681043581468758153, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3012
       objectReference: {fileID: 0}
     - target: {fileID: 4651111837123134033, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
       propertyPath: m_Sprite
@@ -1263,16 +1275,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1408597985}
     - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
+      propertyPath: Velocity
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
+      propertyPath: DashPower
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
       propertyPath: MaxAirJumps
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
       propertyPath: Acceleration
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
       propertyPath: Decceleration
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
       propertyPath: walkSteps.Array.size
