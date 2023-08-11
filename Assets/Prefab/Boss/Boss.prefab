@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 109204838}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.05999994, y: 0.66, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6717078940288497832}
@@ -331,8 +331,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467304669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.88, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2.6, z: 0}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6900473719278959996}
@@ -408,7 +408,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 60
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -680,7 +680,7 @@ Transform:
   m_GameObject: {fileID: 1839272898}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.00999999, y: 0.6999999, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3381997925044488430}
@@ -1312,8 +1312,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 5702978366305200773}
-  blink: {fileID: 8608587074973835151}
+  spriteRenderer: {fileID: 8608587074973835151}
   hit: {fileID: 974689944}
+  blinkMaterial: {fileID: 2100000, guid: ed8b311fd78aa4e98beb6e36a0748966, type: 2}
 --- !u!82 &974689944
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1484,8 +1485,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 9089058994470794524}
-  blink: {fileID: 350760901037094889}
+  spriteRenderer: {fileID: 350760901037094889}
   hit: {fileID: 8486880745397814883}
+  blinkMaterial: {fileID: 2100000, guid: ed8b311fd78aa4e98beb6e36a0748966, type: 2}
 --- !u!82 &8486880745397814883
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1888,15 +1890,15 @@ MonoBehaviour:
   CurrentDefaultAttackTimer: 0
   defaultAttacCount: 0
   isDefaultAttackPlay: 0
-  StrongAttacksTimer: 2
+  StrongAttacksTimer: 1
   CurrentStrongAttacksTimer: 0
   earthCount: 3
-  VulnerableTimer: 8
+  VulnerableTimer: 5
   CurrentVulnerableTimer: 0
   isVulnerablePlay: 0
   Player: {fileID: 0}
   player: {fileID: 0}
-  followSpeed: 3
+  followSpeed: 8
   HitBox:
   - {fileID: 4107470902917881641}
   - {fileID: 4904546400563095671}

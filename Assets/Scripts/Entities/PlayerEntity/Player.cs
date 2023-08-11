@@ -84,13 +84,18 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		private bool isAttacking = false;
 		private float cooldownTimer = 0.0f;
 
-		private Color _blinkColor = Color.red;
+		[SerializeField]
+		public Color _blinkColor = Color.red;
+
+		private Material originalMaterial;
+
+		[SerializeField]
+		public Material blinkMaterial;
 
 		public float _flashDuration = 0.2f;
 
 		public bool _isDamaged = false;
 
-		private Color _originalColor;
 		public bool death;
 
 		public AudioSource walk;
@@ -98,6 +103,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		public Boss Boss;
 		void Start()
 		{
+			originalMaterial = spriteRenderer.material;
 
 			Animator animation = gameObject.GetComponent<Animator>();
 			if (animation) Animation = animation; else Debug.LogError(gameObject.name + " need Animation");
@@ -123,12 +129,13 @@ namespace Assets.Scripts.Entities.PlayerEntity
 				.AddState(StateMap.Damage)
 				.AddState(StateMap.Dash)
 			);
-			
+
 		}
 
 		void Update()
 		{
-			if (!death&&!Boss.death){
+			if (!death && !Boss.death)
+			{
 				fsm.Run();
 			}
 			//Debug.Log(fsm.CurrentState.Name);
@@ -176,8 +183,6 @@ namespace Assets.Scripts.Entities.PlayerEntity
 
 		private IEnumerator HurtAndStun()
 		{
-			_originalColor = spriteRenderer.color;
-
 			float elapsedTime = 0f;
 			while (elapsedTime < StunDuration)
 			{
@@ -187,26 +192,33 @@ namespace Assets.Scripts.Entities.PlayerEntity
 				yield return new WaitForSeconds(_flashDuration);
 			}
 
-			spriteRenderer.color = _originalColor;
+			spriteRenderer.material = originalMaterial;
 			_isDamaged = false;
 		}
 
 		private void FlashEffect()
 		{
-			if (spriteRenderer.color == _originalColor)
-				spriteRenderer.color = _blinkColor;
+			if (spriteRenderer.material == originalMaterial)
+			{
+				spriteRenderer.material = blinkMaterial;
+			}
+
 			else
-				spriteRenderer.color = _originalColor;
+			{
+				spriteRenderer.material = originalMaterial;
+			}
 		}
 
 
-		public void Death(){
+		public void Death()
+		{
 			death = true;
 			Animation.updateMode = AnimatorUpdateMode.UnscaledTime;
 			Animation.Play("death");
 		}
-		
-		public void Walk(){
+
+		public void Walk()
+		{
 			walk.clip = walkSteps[Random.Range(0, walkSteps.Length)];
 			walk.Play();
 		}
@@ -216,7 +228,8 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			StartCoroutine(DashActive());
 		}
 
-		public IEnumerator DashActive(){
+		public IEnumerator DashActive()
+		{
 			dash.SetActive(true);
 			yield return new WaitForSeconds(0.3f);
 			dash.SetActive(false);

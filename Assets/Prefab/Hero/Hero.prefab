@@ -176,15 +176,15 @@ SpriteRenderer:
   m_SortingLayerID: 377476543
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d8219e2691bc9dc40bf6dd3c0e3f8381, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efa8cbcc7876ff345834db342265ab0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.9444444, y: 2}
+  m_Size: {x: 2.75, y: 2.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!82 &1922056423
@@ -194,14 +194,14 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5163393799228000866}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4fe23579d54c8804b93cd580d32405a5, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -352,16 +352,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adadf72a225ee2c45905d453bb2255d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 5
-  Acceleration: 2
-  Decceleration: 2
+  Velocity: 6
+  Acceleration: 3
+  Decceleration: 3
   JumpHeight: 5
-  MaxAirJumps: 1
+  MaxAirJumps: 3
   FallGravityScale: 2
   DashOffsetSec: 0.5
   UncontrollableDashTimeSec: 0.2
   DashTimeMilliAll: 0.4
-  DashPower: 8
+  DashPower: 10
   StunDuration: 1
   KnockBackPower: 2
   KnockUpPower: 2
@@ -379,9 +379,19 @@ MonoBehaviour:
   CurrentStunDuration: 0
   AttackBall: {fileID: 2337826516107931202}
   spriteRenderer: {fileID: 5163393799228000864}
+  dash: {fileID: 6168616816732077320}
   attackCooldown: 0.5
   attackDuration: 0.01
+  _blinkColor: {r: 1, g: 1, b: 1, a: 1}
   _flashDuration: 0.1
+  _isDamaged: 0
+  death: 0
+  walk: {fileID: 1922056423}
+  walkSteps:
+  - {fileID: 8300000, guid: 6426a82c0b5d09c4586ad47445946c4f, type: 3}
+  - {fileID: 8300000, guid: b52a7128a6f938c40ab9ba7359a02179, type: 3}
+  - {fileID: 8300000, guid: 4ef4abb90edd95f45b3ac89c13376590, type: 3}
+  Boss: {fileID: 0}
 --- !u!61 &6620171587779819841
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -439,13 +449,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2681043581468758153}
   - component: {fileID: 4651111837123134033}
+  - component: {fileID: 5163393799703261777}
   m_Layer: 0
   m_Name: dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2681043581468758153
 Transform:
   m_ObjectHideFlags: 0
@@ -454,8 +465,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6168616816732077320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.3211, y: -0.3012, z: 0}
+  m_LocalScale: {x: 1.882552, y: 3.403063, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5163393799228000867}
@@ -501,7 +512,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 377476543
   m_SortingLayer: 5
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 34125b45a7be0914291aa51fd7f68ac9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -513,3 +524,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5163393799703261777
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6168616816732077320}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 12b6ec0c77b43364c9865e8efddd0642, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

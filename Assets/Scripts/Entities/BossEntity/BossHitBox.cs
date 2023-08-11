@@ -5,39 +5,52 @@ using System.Linq;
 using Assets.Scripts.Domain;
 using UnityEngine;
 
-public class BossHitBox : MonoBehaviour{
-    public Collider2D collider;
-    public Action<int> damaged;
-    public SpriteRenderer blink;
-    public AudioSource hit;
+public class BossHitBox : MonoBehaviour
+{
+	public Collider2D collider;
+	public Action<int> damaged;
+	public SpriteRenderer spriteRenderer;
+	public AudioSource hit;
 
-    private void Update(){
-        List<Collider2D> colliders = new List<Collider2D>();
-        collider.OverlapCollider(new ContactFilter2D().NoFilter(), colliders);
-        GameObject goDamageZone = colliders
-            .Select(col => col.gameObject)
-            .ToList()
-            .Find(dmg => dmg.name== "AttackArea");
-        if (goDamageZone != null&&Time.timeScale!=0)
-        {
-            damaged?.Invoke(1);
-            StartCoroutine(Blink());
-            hit.Play();
-        }
-    }
-    private IEnumerator Blink()
-    {
-        blink.color=Color.red;
-        Debug.Log("RED");
-        // Ждем заданную длительность атаки
-        yield return new WaitForSeconds(0.1f);
-        // Уничтожаем объект атаки
-        Debug.Log("WHITE");
+	private Material originalMaterial;
 
-        blink.color=Color.white;
-    }
+	[SerializeField]
+	public Material blinkMaterial;
 
-    private void OnDisable(){
-        blink.color=Color.white;
-    }
+	void Start()
+	{
+		originalMaterial = spriteRenderer.material;
+	}
+
+	private void Update()
+	{
+		List<Collider2D> colliders = new List<Collider2D>();
+		collider.OverlapCollider(new ContactFilter2D().NoFilter(), colliders);
+		GameObject goDamageZone = colliders
+			.Select(col => col.gameObject)
+			.ToList()
+			.Find(dmg => dmg.name == "AttackArea");
+		if (goDamageZone != null && Time.timeScale != 0)
+		{
+			damaged?.Invoke(1);
+			StartCoroutine(Blink());
+			hit.Play();
+		}
+	}
+	private IEnumerator Blink()
+	{
+		spriteRenderer.material = blinkMaterial;
+		Debug.Log("RED");
+		// Ждем заданную длительность атаки
+		yield return new WaitForSeconds(0.1f);
+		// Уничтожаем объект атаки
+		Debug.Log("WHITE");
+
+		spriteRenderer.material = originalMaterial;
+	}
+
+	private void OnDisable()
+	{
+		spriteRenderer.material = originalMaterial;
+	}
 }
