@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Assets.Scripts.Entities.PlayerEntity;
 using Assets.Scripts.StateMachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,7 +16,7 @@ namespace Assets.Scripts.Entities.BossEntity
         public GameObject NailMarker;
         public GameObject pointToSpawnEarth;
         public GameObject earth;
-        public BossHitBox hitbox;
+        public BossHitBox[] hitbox;
         public event Action<int> damaged; 
 
         public NailMarker currentNailMarker;
@@ -67,9 +69,10 @@ namespace Assets.Scripts.Entities.BossEntity
 
 
         [Header("Other")]
+        public Player Player;
         public Transform player;
         public float followSpeed = 5f; // Скорость следования босса за игроком
-        public GameObject HitBox;
+        public GameObject[] HitBox;
 
         public StateMachine<Boss> fsm;
         public Animator Animation;
@@ -78,6 +81,12 @@ namespace Assets.Scripts.Entities.BossEntity
         public bool SecondStage;
         public float SecondStageValue=2f;
         public SpriteRenderer blink;
+
+        public BoxCollider2D left;
+        public BoxCollider2D right;
+
+        public GameObject AtencionIcon;
+        public bool death;
 
         void Start()
         {
@@ -94,12 +103,16 @@ namespace Assets.Scripts.Entities.BossEntity
             );
 
             isIdle = true;
-            hitbox.damaged += Damage;
+            hitbox[0].damaged += Damage;
+            hitbox[1].damaged += Damage;
+
         }
 
         void Update()
         {
-            fsm.Run();
+            if (!death && !Player.death){
+                fsm.Run();
+            }
             //Debug.Log(fsm.CurrentState.Name);
             if (isHaunt){
                 MoveToPlayer();
@@ -170,16 +183,25 @@ namespace Assets.Scripts.Entities.BossEntity
         }
         
         public void ExitVulnerable(){
-            HitBox.SetActive(false);
+            HitBox[0].SetActive(false);
+            HitBox[1].SetActive(false);
+
             isVulnerablePlay = false;
             isVulnerable = false;
             isIdle = true;
+            left.enabled = true;
+            right.enabled = true;
+
         }
 
         public void Vulnerable(){
             isVulnerablePlay = true;
-            HitBox.SetActive(true);
+            HitBox[0].SetActive(true);
+            HitBox[1].SetActive(true);
+
             Animation.Play("Stuck");
+            left.enabled = false;
+            right.enabled = false;
         }
        
         public void CarThrow(){
@@ -235,19 +257,13 @@ namespace Assets.Scripts.Entities.BossEntity
                 objL.GetComponent<Earth>().Init(earthCount,false);
         }
         
+        
+        
         public void NailShots(){
             isNailShotsPlay = true;
             Animation.Play("Cabin_shooting");
-            foreach (GameObject marker in currentNailMarker.markers){
-                var target =new Vector3(marker.transform.position.x, marker.transform.position.y,
-                    marker.transform.position.z);
-                var nail=Instantiate(this.nail, pointToSpawnNail.transform.position,Quaternion.identity);
-                Nail comp=nail.GetComponent<Nail>();
-                comp.target = target;
-                comp.isMove = true;
-            }
-            if (Health < 50){
-                foreach (GameObject marker in currentNailMarker.leftMarkers){
+            if (currentNailMarker){
+                foreach (GameObject marker in currentNailMarker.markers){
                     var target =new Vector3(marker.transform.position.x, marker.transform.position.y,
                         marker.transform.position.z);
                     var nail=Instantiate(this.nail, pointToSpawnNail.transform.position,Quaternion.identity);
@@ -255,17 +271,26 @@ namespace Assets.Scripts.Entities.BossEntity
                     comp.target = target;
                     comp.isMove = true;
                 }
-                foreach (GameObject marker in currentNailMarker.rightMarkers){
-                    var target =new Vector3(marker.transform.position.x, marker.transform.position.y,
-                        marker.transform.position.z);
-                    var nail=Instantiate(this.nail, pointToSpawnNail.transform.position,Quaternion.identity);
-                    Nail comp=nail.GetComponent<Nail>();
-                    comp.target = target;
-                    comp.isMove = true;
+                if (Health < 50){
+                    foreach (GameObject marker in currentNailMarker.leftMarkers){
+                        var target =new Vector3(marker.transform.position.x, marker.transform.position.y,
+                            marker.transform.position.z);
+                        var nail=Instantiate(this.nail, pointToSpawnNail.transform.position,Quaternion.identity);
+                        Nail comp=nail.GetComponent<Nail>();
+                        comp.target = target;
+                        comp.isMove = true;
+                    }
+                    foreach (GameObject marker in currentNailMarker.rightMarkers){
+                        var target =new Vector3(marker.transform.position.x, marker.transform.position.y,
+                            marker.transform.position.z);
+                        var nail=Instantiate(this.nail, pointToSpawnNail.transform.position,Quaternion.identity);
+                        Nail comp=nail.GetComponent<Nail>();
+                        comp.target = target;
+                        comp.isMove = true;
+                    }
                 }
+                Destroy(currentNailMarker.gameObject);
             }
-
-            Destroy(currentNailMarker.gameObject);
         }
         
         public void ExitNailShots(){
@@ -296,7 +321,22 @@ namespace Assets.Scripts.Entities.BossEntity
         }
         
         public void Death(){
-            blink.color = Color.black;
+            death = true;
+            Animation.updateMode = AnimatorUpdateMode.UnscaledTime;
+            Animation.Play("death");
+            
+        }
+        
+        public void Atencion(){
+            StartCoroutine(AtecionGO());
+        }
+
+
+        public IEnumerator AtecionGO(){
+            AtencionIcon.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            AtencionIcon.SetActive(false);
+            NailShots();
         }
     }
 }

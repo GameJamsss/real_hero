@@ -36,8 +36,12 @@ namespace Assets.Scripts.Entities.PlayerEntity
 
         public static State<Player> Jump = new State<Player>("Jump", (ulong) StatePriority.Jump)
             .SetEnterCondition(entity => Input.GetButton("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps)
-            .SetOnStateEnter(entity =>
-                entity.AirJumpsCounter += Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask) ? 0 : 1
+            .SetOnStateEnter(entity => {
+                entity.Animation.Play("jump");
+                entity.AirJumpsCounter = 1;
+                //entity.AirJumpsCounter +=
+                //    Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask) ? 0 : 1;
+            }
             )
             .AddModifier(gmm)
             .AddModifier(dorm)
@@ -62,9 +66,11 @@ namespace Assets.Scripts.Entities.PlayerEntity
             .ToBlack(Move);
 
         public static State<Player> Dash = new State<Player>("Dash", (ulong) StatePriority.Dash)
-            .SetEnterCondition(entity => Input.GetButton("Dash") && entity.CurrentDashOffsetSec > entity.DashOffsetSec)
+            .SetEnterCondition(entity => Input.GetButton("Dash") && entity.CurrentDashOffsetSec > entity.DashOffsetSec&&
+                                         Input.GetButton("Horizontal"))
             .SetOnStateEnter(entity => 
                 {
+                    entity.PlayDash();
                     Dash.Lock = true;
                     entity.CurrentDashOffsetSec = 0f;
                     entity.CurrentDashTimeSec = 0f;
@@ -92,12 +98,12 @@ namespace Assets.Scripts.Entities.PlayerEntity
                 {
                     List<Collider2D> colliders = new List<Collider2D>();
                     entity.Collider.OverlapCollider(new ContactFilter2D().NoFilter(), colliders);
-                    return colliders.Exists(col => col.gameObject.GetComponent<Damagable>() != null);
+                    return colliders.Exists(col => col.gameObject.GetComponent<Damagable>() != null)&&!entity._isDamaged;
                 }
             )
             .SetOnStateEnter(entity =>
                 {
-                    Damage.Lock = true;
+                    //Damage.Lock = true;
                     entity.CurrentStunDuration = 0f;
                     List<Collider2D> colliders = new List<Collider2D>();
                     entity.Collider.OverlapCollider(new ContactFilter2D().NoFilter(), colliders);
@@ -108,7 +114,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
                     if (goDamageZone != null)
                     {
                         entity.Damaged(goDamageZone.GetComponent<Damagable>().GetDamage());
-                        entity.Rigidbody.velocity =
+                        //entity.Rigidbody.velocity =
                             new Vector2(
                                 (
                                     entity.transform.position.x - goDamageZone.transform.position.x) * entity.KnockBackPower,
@@ -122,7 +128,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
                     entity.CurrentStunDuration += Time.deltaTime;
                     if (entity.CurrentStunDuration > entity.StunDuration)
                     {
-                        Damage.Lock = false;
+                        //Damage.Lock = false;
                     }
                 }
             )

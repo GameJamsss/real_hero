@@ -75,7 +75,7 @@ public class GameMenuManager : MonoBehaviour
     {
         mainMusic.Stop();
         HideAllPanels();        
-        Time.timeScale = 0;
+        StartCoroutine(SetTime());
         _winPanel.SetActive(true);
     }
 
@@ -95,8 +95,13 @@ public class GameMenuManager : MonoBehaviour
     {
         mainMusic.Stop();
         HideAllPanels();
-        Time.timeScale = 0;
+        StartCoroutine(SetTime());
         _defeatPanel.SetActive(true);
+    }
+
+    private IEnumerator SetTime(){
+        yield return new WaitForSeconds(5);
+        Time.timeScale = 0;
     }
 
     private void HideAllPanels()

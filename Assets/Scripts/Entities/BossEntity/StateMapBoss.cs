@@ -37,9 +37,9 @@ namespace Assets.Scripts.Entities.BossEntity
                         {
                             boss.isCarThrow=true;
                         }
-
+                    
                         boss.CurrentStateAtackCount++;
-
+                    
                     }
                     else{
                         boss.isStrongAttacks=true;
@@ -100,7 +100,7 @@ namespace Assets.Scripts.Entities.BossEntity
                 boss.CurrentNailShotsTimer += Time.deltaTime;
                 if (boss.NailShotsTimer <= boss.CurrentNailShotsTimer&&!boss.isNailShotsPlay)
                 {
-                    boss.NailShots();
+                    boss.Atencion();
                 }
             });
 

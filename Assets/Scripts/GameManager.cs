@@ -23,12 +23,12 @@ public class GameManager : MonoBehaviour{
 
     public void Sub(){
         player.damaged += uiManager.playerHealthBar.NextImage;
-        uiManager.playerHealthBar.death += uiManager.ShowDefeatPanel;
         uiManager.playerHealthBar.death += player.Death;
+        uiManager.playerHealthBar.death += uiManager.ShowDefeatPanel;
 
         boss.damaged += uiManager.bossHealthBar.ChangeValue;
-        uiManager.bossHealthBar.death += uiManager.ShowWinPanel;
         uiManager.bossHealthBar.death += boss.Death;
+        uiManager.bossHealthBar.death += uiManager.ShowWinPanel;
 
     }
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
+using Assets.Scripts.Entities.BossEntity;
 using Assets.Scripts.StateMachine;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Entities.PlayerEntity
 {
@@ -72,6 +74,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		public GameObject AttackBall;
 		public SpriteRenderer spriteRenderer;
 
+		public GameObject dash;
 		public event Action<int> damaged;
 
 		public float attackCooldown = 1.0f; // Кулдаун между атаками
@@ -85,10 +88,14 @@ namespace Assets.Scripts.Entities.PlayerEntity
 
 		public float _flashDuration = 0.2f;
 
-		private bool _isDamaged = false;
+		public bool _isDamaged = false;
 
 		private Color _originalColor;
+		public bool death;
 
+		public AudioSource walk;
+		public AudioClip[] walkSteps;
+		public Boss Boss;
 		void Start()
 		{
 
@@ -116,11 +123,14 @@ namespace Assets.Scripts.Entities.PlayerEntity
 				.AddState(StateMap.Damage)
 				.AddState(StateMap.Dash)
 			);
+			
 		}
 
 		void Update()
 		{
-			fsm.Run();
+			if (!death&&!Boss.death){
+				fsm.Run();
+			}
 			//Debug.Log(fsm.CurrentState.Name);
 
 			if (Input.GetButton("Fire1"))
@@ -136,7 +146,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 				}
 			}
 			// TODO: может жестко, но вроде понятно
-			Animation.enabled = !_isDamaged;
+			//Animation.enabled = !_isDamaged;
 		}
 
 		public void Damaged(int damage)
@@ -190,9 +200,26 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		}
 
 
-		public void Death()
+		public void Death(){
+			death = true;
+			Animation.updateMode = AnimatorUpdateMode.UnscaledTime;
+			Animation.Play("death");
+		}
+		
+		public void Walk(){
+			walk.clip = walkSteps[Random.Range(0, walkSteps.Length)];
+			walk.Play();
+		}
+
+		public void PlayDash()
 		{
-			spriteRenderer.color = Color.black;
+			StartCoroutine(DashActive());
+		}
+
+		public IEnumerator DashActive(){
+			dash.SetActive(true);
+			yield return new WaitForSeconds(0.3f);
+			dash.SetActive(false);
 		}
 	}
 }

@@ -28,10 +28,16 @@ public class BossHitBox : MonoBehaviour{
     private IEnumerator Blink()
     {
         blink.color=Color.red;
+        Debug.Log("RED");
         // Ждем заданную длительность атаки
         yield return new WaitForSeconds(0.1f);
         // Уничтожаем объект атаки
+        Debug.Log("WHITE");
+
         blink.color=Color.white;
     }
 
+    private void OnDisable(){
+        blink.color=Color.white;
+    }
 }
