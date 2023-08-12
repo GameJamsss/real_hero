@@ -4,36 +4,57 @@ using UnityEngine;
 
 public class LeaderboardManager : MonoBehaviour
 {
-    [SerializeField] private UserData _userDataPref;
-    [SerializeField] private GameObject _userPanel;
+	[SerializeField] private UserData _userDataPref;
+	[SerializeField] private GameObject _userPanel;
 
-    private List<UserData> _users = new List<UserData>();
-  
-    private void OnEnable() //reset leaderboard
-    {
-        //delete old data
-        ClearLeadboard();
-        //create new and set new data
-        foreach (var playerData in StaticData.playersData){
-            AddNewUserToList(playerData.name,playerData.time);
-        }
-    }
+	[SerializeField] private GameObject _backBtn;
 
-    private void AddNewUserToList(string player,string time)
-    {
-        var newUser = Instantiate(_userDataPref, _userPanel.transform);
-        newUser.SetData(player,  time);
-        _users.Add(newUser);
-    }
+	private List<UserData> _users = new List<UserData>();
 
-    private void ClearLeadboard()
-    {
-        if (_users.Count == 0)
-            return;
 
-        foreach (var user in _users)
-            Destroy(user.gameObject);
+	public delegate void DisableDelegate();
+	public event DisableDelegate DisabledEvent;
 
-        _users.Clear();
-    }
+	private void Start()
+	{
+		if (_backBtn != null)
+		{
+			_backBtn.GetComponent<ButtonTextColorChanger>().OnSelect();
+		}
+	}
+
+	private void OnEnable() //reset leaderboard
+	{
+		//delete old data
+		ClearLeadboard();
+		//create new and set new data
+		foreach (var playerData in StaticData.playersData)
+		{
+			AddNewUserToList(playerData.name, playerData.time);
+		}
+	}
+
+	private void OnDisable()
+	{
+		_backBtn.GetComponent<ButtonTextColorChanger>().OnDeSelect();
+		DisabledEvent?.Invoke();
+	}
+
+	private void AddNewUserToList(string player, string time)
+	{
+		var newUser = Instantiate(_userDataPref, _userPanel.transform);
+		newUser.SetData(player, time);
+		_users.Add(newUser);
+	}
+
+	private void ClearLeadboard()
+	{
+		if (_users.Count == 0)
+			return;
+
+		foreach (var user in _users)
+			Destroy(user.gameObject);
+
+		_users.Clear();
+	}
 }

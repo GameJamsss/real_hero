@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
 	public void Continue()
 	{
 		pause = false;
-		Debug.Log("CONTIUE CLICKED");
 		Time.timeScale = 1;
 		PausePanel.SetActive(false);
 	}
@@ -60,7 +59,8 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (uiManager.isTimeRun){
+		if (uiManager.isTimeRun)
+		{
 			time = time + Time.deltaTime;
 			uiManager._timer.text = FormatTime(time);
 			uiManager._resultTimer.text = FormatTime(time);

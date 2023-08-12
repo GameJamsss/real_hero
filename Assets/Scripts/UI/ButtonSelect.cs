@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class ButtonSelect : MonoBehaviour
 {
-    private Button button;
+	private Button button;
 
-    // Start is called before the first frame update
-    void OnEnable()
-    {
-        button = GetComponent<Button>();
-            button.Select();
-    }
+	// Start is called before the first frame update
+	void OnEnable()
+	{
+		button = GetComponent<Button>();
+		button.Select();
+	}
 }

@@ -666,6 +666,7 @@ GameObject:
   - component: {fileID: 141223839}
   - component: {fileID: 141223841}
   - component: {fileID: 141223840}
+  - component: {fileID: 141223842}
   m_Layer: 5
   m_Name: DeveloperPanel
   m_TagString: Untagged
@@ -733,6 +734,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141223838}
   m_CullTransparentMesh: 1
+--- !u!114 &141223842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141223838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b563a9daf89418c9db780c5a88db62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _backBtn: {fileID: 883766515}
 --- !u!1001 &141691067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2754,8 +2768,7 @@ GameObject:
   - component: {fileID: 439038130}
   - component: {fileID: 439038131}
   - component: {fileID: 439038133}
-  - component: {fileID: 439038132}
-  - component: {fileID: 439038134}
+  - component: {fileID: 439038135}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -3026,20 +3039,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &439038132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 439038124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bac7013c9c7649938cda7d64b0fabe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverColor: {r: 1, g: 0.298, b: 0.298, a: 1}
 --- !u!114 &439038133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3057,7 +3056,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 439038132}
+        - m_Target: {fileID: 439038135}
           m_TargetAssemblyTypeName: ButtonTextColorChanger, Assembly-CSharp
           m_MethodName: OnSelect
           m_Mode: 1
@@ -3073,7 +3072,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 439038132}
+        - m_Target: {fileID: 439038135}
           m_TargetAssemblyTypeName: ButtonTextColorChanger, Assembly-CSharp
           m_MethodName: OnDeSelect
           m_Mode: 1
@@ -3085,7 +3084,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &439038134
+--- !u!114 &439038135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3094,9 +3093,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 439038124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c122efb2e5e351d4a81df0e4c9f5504b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bac7013c9c7649938cda7d64b0fabe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleMultiplier: 1.2
+  animationDuration: 0.2
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 1, g: 0.298, b: 0.298, a: 1}
 --- !u!1001 &456935948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3394,8 +3397,10 @@ MonoBehaviour:
   _mainPanel: {fileID: 268756200}
   _leaderboardPanel: {fileID: 986575077}
   _enterNamePanel: {fileID: 1582766996}
-  _mainMenuFirstButton: {fileID: 439038124}
-  _leaderboardFirstButton: {fileID: 547336204}
+  _developersPanel: {fileID: 141223838}
+  _startBtn: {fileID: 439038124}
+  _developersButton: {fileID: 1080130449}
+  _leaderboardButton: {fileID: 1314758684}
   _enterNameFirstButton: {fileID: 1012370081}
 --- !u!82 &480764277
 AudioSource:
@@ -4624,6 +4629,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bac7013c9c7649938cda7d64b0fabe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleMultiplier: 1.2
+  animationDuration: 0.2
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 1, g: 0.298, b: 0.298, a: 1}
 --- !u!114 &547336211
@@ -6136,6 +6143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bac7013c9c7649938cda7d64b0fabe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleMultiplier: 1.2
+  animationDuration: 0.2
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 1, g: 0.298, b: 0.298, a: 1}
 --- !u!114 &883766522
@@ -6680,6 +6689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _userDataPref: {fileID: 408361198265880343, guid: dc4be79516b3a1b48ba217623532465e, type: 3}
   _userPanel: {fileID: 977390270}
+  _backBtn: {fileID: 547336204}
 --- !u!1001 &1010638092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7296,7 +7306,7 @@ GameObject:
   - component: {fileID: 1080130457}
   - component: {fileID: 1080130456}
   m_Layer: 5
-  m_Name: AboutUsButton
+  m_Name: DevelopersBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7614,6 +7624,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bac7013c9c7649938cda7d64b0fabe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleMultiplier: 1.2
+  animationDuration: 0.2
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 1, g: 0.298, b: 0.298, a: 1}
 --- !u!1 &1100847297
@@ -7974,7 +7986,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<\u0412\u042B\u0419\u0422\u0418>"
+  m_text: "\u0412\u042B\u0419\u0422\u0418"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: accdc2abb75f4454592e9b18752d8890, type: 2}
   m_sharedMaterial: {fileID: 4139305213577128997, guid: accdc2abb75f4454592e9b18752d8890, type: 2}
@@ -9036,6 +9048,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bac7013c9c7649938cda7d64b0fabe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleMultiplier: 1.2
+  animationDuration: 0.2
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 1, g: 0.298, b: 0.298, a: 1}
 --- !u!1001 &1324180519
@@ -10601,7 +10615,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<\u0412\u042B\u0419\u0422\u0418>"
+  m_text: "\u0412\u042B\u0419\u0422\u0418"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: accdc2abb75f4454592e9b18752d8890, type: 2}
   m_sharedMaterial: {fileID: 4139305213577128997, guid: accdc2abb75f4454592e9b18752d8890, type: 2}
@@ -11202,6 +11216,7 @@ GameObject:
   - component: {fileID: 1607406265}
   - component: {fileID: 1607406264}
   - component: {fileID: 1607406267}
+  - component: {fileID: 1607406268}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -11317,7 +11332,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607406262}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -11444,6 +11459,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1607406268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607406262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bac7013c9c7649938cda7d64b0fabe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleMultiplier: 1.2
+  animationDuration: 0.8
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 1, g: 0.298, b: 0.298, a: 1}
 --- !u!1 &1611637262
 GameObject:
   m_ObjectHideFlags: 0
@@ -13419,6 +13450,7 @@ GameObject:
   - component: {fileID: 1994185941}
   - component: {fileID: 1994185940}
   - component: {fileID: 1994185943}
+  - component: {fileID: 1994185944}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -13546,7 +13578,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994185938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -13673,6 +13705,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1994185944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994185938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bac7013c9c7649938cda7d64b0fabe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleMultiplier: 1.2
+  animationDuration: 0.8
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 1, g: 0.298, b: 0.298, a: 1}
 --- !u!1001 &2016466486
 PrefabInstance:
   m_ObjectHideFlags: 0
