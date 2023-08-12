@@ -78,7 +78,7 @@ PlayerSettings:
   androidMinimumWindowWidth: 400
   androidMinimumWindowHeight: 300
   androidFullscreenMode: 1
-  defaultIsNativeResolution: 1
+  defaultIsNativeResolution: 0
   macRetinaSupport: 1
   runInBackground: 0
   captureSingleScreen: 0
@@ -780,7 +780,7 @@ PlayerSettings:
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
   enableRoslynAnalyzers: 1
-  selectedPlatform: 3
+  selectedPlatform: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1
