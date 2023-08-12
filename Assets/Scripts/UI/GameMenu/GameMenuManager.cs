@@ -33,6 +33,8 @@ public class GameMenuManager : MonoBehaviour
 	private bool _wasHit;
 	private int _curPoints;
 
+	public bool isTimeRun;
+
 	private void Awake()
 	{
 		_audioSource = GetComponent<AudioSource>();
@@ -47,6 +49,7 @@ public class GameMenuManager : MonoBehaviour
 		_timer.text = "0:0";
 
 		InvokeRepeating("SubtractHits", 0f, _hitsCooldownValue);
+		isTimeRun = true;
 	}
 
 	//delete
@@ -75,6 +78,7 @@ public class GameMenuManager : MonoBehaviour
 	{
 		mainMusic.Stop();
 		HideAllPanels();
+		isTimeRun = false;
 		StartCoroutine(SetTime());
 		_winPanel.SetActive(true);
 	}
@@ -95,6 +99,7 @@ public class GameMenuManager : MonoBehaviour
 	{
 		mainMusic.Stop();
 		HideAllPanels();
+		isTimeRun = false;
 		StartCoroutine(SetTime());
 		_defeatPanel.SetActive(true);
 	}

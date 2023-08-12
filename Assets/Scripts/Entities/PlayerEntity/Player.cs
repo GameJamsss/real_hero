@@ -3,6 +3,7 @@ using System.Collections;
 using Assets.Scripts.Entities.BossEntity;
 using Assets.Scripts.StateMachine;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Entities.PlayerEntity
@@ -28,7 +29,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		[SerializeField] public float FallGravityScale = 2f;
 
 		[Header("The time need to be passed before new dash in milliseconds")]
-		[SerializeField] public float DashOffsetSec = 0.5f;
+		[SerializeField] public float DashOffsetSec = 10.0f;
 
 		[Header("How long player will be dashing without control in milliseconds")]
 		[SerializeField] public float UncontrollableDashTimeSec = 0.2f;
@@ -103,6 +104,9 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		public Boss Boss;
 
 		private float _walkAudioMultiplier = 5.0f;
+
+
+		public Image dashImage;
 		void Start()
 		{
 
@@ -157,6 +161,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			}
 			// TODO: может жестко, но вроде понятно
 			//Animation.enabled = !_isDamaged;
+			dashImage.fillAmount = CurrentDashOffsetSec / DashOffsetSec;
 		}
 
 		public void Damaged(int damage)
@@ -217,6 +222,11 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		{
 			death = true;
 			Animation.updateMode = AnimatorUpdateMode.UnscaledTime;
+			StartCoroutine(PlayDeath());
+		}
+		public IEnumerator PlayDeath()
+		{
+			yield return new WaitForSeconds(0.1f);
 			Animation.Play("death");
 		}
 

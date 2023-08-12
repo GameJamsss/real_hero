@@ -60,9 +60,11 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		time = time + Time.deltaTime;
-		uiManager._timer.text = FormatTime(time);
-		uiManager._resultTimer.text = FormatTime(time);
+		if (uiManager.isTimeRun){
+			time = time + Time.deltaTime;
+			uiManager._timer.text = FormatTime(time);
+			uiManager._resultTimer.text = FormatTime(time);
+		}
 		if (Input.GetKeyDown(KeyCode.P))
 		{
 			pause = !pause;
