@@ -7974,7 +7974,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u042B\u0419\u0422\u0418"
+  m_text: "<\u0412\u042B\u0419\u0422\u0418>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: accdc2abb75f4454592e9b18752d8890, type: 2}
   m_sharedMaterial: {fileID: 4139305213577128997, guid: accdc2abb75f4454592e9b18752d8890, type: 2}
@@ -10601,7 +10601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u042B\u0419\u0422\u0418"
+  m_text: "<\u0412\u042B\u0419\u0422\u0418>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: accdc2abb75f4454592e9b18752d8890, type: 2}
   m_sharedMaterial: {fileID: 4139305213577128997, guid: accdc2abb75f4454592e9b18752d8890, type: 2}
