@@ -64,8 +64,12 @@ public class ButtonTextColorChanger : MonoBehaviour
 	public void OnSelect()
 	{
 		Debug.Log("BUTTON SELECTED NOW  - " + ButtonString);
-		buttonText.text = $"< {ButtonString} >";
-		buttonText.fontSize = SizeText * 1.2f;
+		if (buttonText.text != null)
+		{
+			buttonText.text = $"< {ButtonString} >";
+			buttonText.fontSize = SizeText * 1.2f;
+		}
+
 
 		shouldAnimate = true;
 
@@ -82,8 +86,12 @@ public class ButtonTextColorChanger : MonoBehaviour
 	}
 	public void OnDeSelect()
 	{
-		buttonText.text = $"{ButtonString}";
-		buttonText.fontSize = SizeText;
+		if (buttonText.text != null)
+		{
+			buttonText.text = $"{ButtonString}";
+			buttonText.fontSize = SizeText;
+		}
+
 
 		shouldAnimate = false;
 

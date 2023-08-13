@@ -19,12 +19,14 @@ public class ButtonSelect : MonoBehaviour
 	void OnEnable()
 	{
 		button.Select();
-		buttonSelectScript.OnSelect();
+		if (buttonSelectScript != null)
+			buttonSelectScript.OnSelect();
 	}
 
 	void OnDisable()
 	{
-		buttonSelectScript.OnDeSelect();
+		if (buttonSelectScript != null)
+			buttonSelectScript.OnDeSelect();
 	}
 
 }
