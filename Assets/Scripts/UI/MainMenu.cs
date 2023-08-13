@@ -87,11 +87,14 @@ public class MainMenu : MonoBehaviour
 
 	public void OpenLeaderboard()
 	{
+		Debug.Log("OpOpenLeaderboardenM");
 		EventSystem.current.SetSelectedGameObject(null);
 		EventSystem.current.SetSelectedGameObject(_leaderboardButton);
+		ResetMainMenuToCurrentBtn(_leaderboardPanel);
 
-		_mainPanel.SetActive(false);
+		_mainPanel.SetActive(true);
 		_leaderboardPanel.SetActive(true);
+		_enterNamePanel.SetActive(false);
 	}
 
 	//MainPanel
@@ -100,6 +103,7 @@ public class MainMenu : MonoBehaviour
 		Debug.Log("OpenMainMenu");
 		EventSystem.current.SetSelectedGameObject(null);
 		EventSystem.current.SetSelectedGameObject(_startBtn);
+		ResetMainMenuToCurrentBtn(_mainPanel);
 
 
 		_mainPanel.SetActive(true);

@@ -31,6 +31,8 @@ public class ButtonTextColorChanger : MonoBehaviour
 	private Coroutine animationCoroutine;
 	private bool shouldAnimate = false;
 
+	public bool isSelected = false;
+
 	private void Awake()
 	{
 		button = GetComponent<Button>();
@@ -44,6 +46,10 @@ public class ButtonTextColorChanger : MonoBehaviour
 
 	private void OnEnable()
 	{
+		if (isSelected)
+		{
+			OnSelect();
+		}
 		if (shouldAnimate)
 		{
 			if (animationCoroutine != null)

@@ -78,6 +78,11 @@ public class GameManager : MonoBehaviour
 				this.Continue();
 			}
 		}
+		//TODO: Delete this before build - N for test WinScreen
+		if (Input.GetKeyDown(KeyCode.N))
+		{
+			boss.Damage(100);
+		}
 
 	}
 
