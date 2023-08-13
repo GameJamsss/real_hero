@@ -47,7 +47,7 @@ public class SkillCheck : MonoBehaviour
     }
 
     //Use for checking
-    private void Update()
+/*    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -58,7 +58,7 @@ public class SkillCheck : MonoBehaviour
             _isActive = false;
             StartSkillCheck();
         }
-    }
+    }*/
 
     //Start skill check
     public void StartSkillCheck()
