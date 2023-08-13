@@ -1903,7 +1903,7 @@ MonoBehaviour:
   - {fileID: 4107470902917881641}
   - {fileID: 4904546400563095671}
   Animation: {fileID: 6900473719891567222}
-  Health: 80
+  Health: 20
   SecondStage: 0
   SecondStageValue: 1.5
   blink: {fileID: 6900473719278959999}
