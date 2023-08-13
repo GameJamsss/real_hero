@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class MainMenu : MonoBehaviour
 
 	private bool _mainMenuStarted = false;
 
+	private Dictionary<GameObject, GameObject> buttonsAndPanelMap = new Dictionary<GameObject, GameObject>();
+
+
+
 	void Start()
 	{
 		_mainPanel.SetActive(true);
@@ -32,23 +37,37 @@ public class MainMenu : MonoBehaviour
 			_enterNamePanel.SetActive(true);
 		}
 
+		buttonsAndPanelMap[_startBtn] = _mainPanel;
+		buttonsAndPanelMap[_developersButton] = _developersPanel;
+		buttonsAndPanelMap[_leaderboardButton] = _leaderboardPanel;
+
 
 		LeaderboardManager leaderBoard = _leaderboardPanel.GetComponent<LeaderboardManager>();
-		leaderBoard.DisabledEvent += ResetMainMenuToCurrentBtn;
+		leaderBoard.DisabledEvent += () => ResetMainMenuToCurrentBtn(_leaderboardPanel);
 
 		DevelopersPanelManager developersPanel = _developersPanel.GetComponent<DevelopersPanelManager>();
-		developersPanel.DisabledEvent += ResetMainMenuToCurrentBtn;
+		developersPanel.DisabledEvent += () => ResetMainMenuToCurrentBtn(_developersPanel);
 
 	}
 
 
-	private void ResetMainMenuToCurrentBtn()
+	private void ResetMainMenuToCurrentBtn(GameObject currentPanel)
 	{
-		_startBtn.GetComponent<ButtonTextColorChanger>().OnDeSelect();
-		_developersButton.GetComponent<ButtonTextColorChanger>().OnDeSelect();
-		_leaderboardButton.GetComponent<ButtonTextColorChanger>().OnDeSelect();
-		_startBtn.GetComponent<ButtonTextColorChanger>().OnSelect();
-		EventSystem.current.SetSelectedGameObject(_startBtn);
+		foreach (var buttonPanelPair in buttonsAndPanelMap)
+		{
+			GameObject button = buttonPanelPair.Key;
+			GameObject panel = buttonPanelPair.Value;
+
+			if (panel != currentPanel)
+			{
+				button.GetComponent<ButtonTextColorChanger>().OnDeSelect();
+			}
+			else
+			{
+				button.GetComponent<ButtonTextColorChanger>().OnSelect();
+				EventSystem.current.SetSelectedGameObject(button);
+			}
+		}
 	}
 
 	public void OpenEnterName()

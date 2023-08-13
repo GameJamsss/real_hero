@@ -1893,19 +1893,19 @@ MonoBehaviour:
   StrongAttacksTimer: 1
   CurrentStrongAttacksTimer: 0
   earthCount: 3
-  VulnerableTimer: 5
+  VulnerableTimer: 4
   CurrentVulnerableTimer: 0
   isVulnerablePlay: 0
   Player: {fileID: 0}
   player: {fileID: 0}
-  followSpeed: 8
+  followSpeed: 5
   HitBox:
   - {fileID: 4107470902917881641}
   - {fileID: 4904546400563095671}
   Animation: {fileID: 6900473719891567222}
-  Health: 100
+  Health: 70
   SecondStage: 0
-  SecondStageValue: 2
+  SecondStageValue: 1.5
   blink: {fileID: 6900473719278959999}
   left: {fileID: 4156662715246420716}
   right: {fileID: 4764031241643585189}

@@ -25,6 +25,7 @@ public class LeaderboardManager : MonoBehaviour
 
 	private void OnEnable() //reset leaderboard
 	{
+		Debug.Log("ON ENABLE LEAADERBOARD");
 		//delete old data
 		ClearLeadboard();
 		//create new and set new data
@@ -36,7 +37,6 @@ public class LeaderboardManager : MonoBehaviour
 
 	private void OnDisable()
 	{
-		_backBtn.GetComponent<ButtonTextColorChanger>().OnDeSelect();
 		DisabledEvent?.Invoke();
 	}
 

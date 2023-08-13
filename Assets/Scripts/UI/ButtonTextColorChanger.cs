@@ -57,7 +57,8 @@ public class ButtonTextColorChanger : MonoBehaviour
 
 	public void OnSelect()
 	{
-		buttonText.text = $"<{ButtonString}>";
+		Debug.Log("BUTTON SELECTED NOW  - " + ButtonString);
+		buttonText.text = $"< {ButtonString} >";
 		buttonText.fontSize = SizeText * 1.2f;
 
 		shouldAnimate = true;
@@ -66,7 +67,7 @@ public class ButtonTextColorChanger : MonoBehaviour
 		{
 			StopCoroutine(animationCoroutine);
 		}
-		if (gameObject.activeSelf)
+		if (gameObject.activeSelf && gameObject.activeInHierarchy)
 		{
 			animationCoroutine = StartCoroutine(AnimateButton());
 		}

@@ -37,7 +37,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			.AddModifier(gmm);
 
 		public static State<Player> Jump = new State<Player>("Jump", (ulong)StatePriority.Jump)
-			.SetEnterCondition(entity => Input.GetButton("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps)
+			.SetEnterCondition(entity => Input.GetButton("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps && Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask))
 			.SetOnStateEnter(entity =>
 			{
 				entity.Animation.Play("jump");

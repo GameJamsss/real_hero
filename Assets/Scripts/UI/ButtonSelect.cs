@@ -7,11 +7,24 @@ using UnityEngine.UI;
 public class ButtonSelect : MonoBehaviour
 {
 	private Button button;
+	private ButtonTextColorChanger buttonSelectScript;
 
 	// Start is called before the first frame update
-	void OnEnable()
+	private void Awake()
 	{
 		button = GetComponent<Button>();
-		button.Select();
+		buttonSelectScript = GetComponent<ButtonTextColorChanger>();
 	}
+
+	void OnEnable()
+	{
+		button.Select();
+		buttonSelectScript.OnSelect();
+	}
+
+	void OnDisable()
+	{
+		buttonSelectScript.OnDeSelect();
+	}
+
 }

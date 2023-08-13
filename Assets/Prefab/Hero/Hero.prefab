@@ -358,11 +358,11 @@ MonoBehaviour:
   JumpHeight: 5
   MaxAirJumps: 3
   FallGravityScale: 2
-  DashOffsetSec: 0.5
+  DashOffsetSec: 2
   UncontrollableDashTimeSec: 0.2
   DashTimeMilliAll: 0.4
   DashPower: 10
-  StunDuration: 1
+  blinkingDuration: 0.8
   KnockBackPower: 2
   KnockUpPower: 2
   GroundMask:
@@ -382,7 +382,8 @@ MonoBehaviour:
   dash: {fileID: 6168616816732077320}
   attackCooldown: 0.5
   attackDuration: 0.01
-  _blinkColor: {r: 1, g: 1, b: 1, a: 1}
+  _blinkColor: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 1}
+  blinkMaterial: {fileID: 2100000, guid: ed8b311fd78aa4e98beb6e36a0748966, type: 2}
   _flashDuration: 0.1
   _isDamaged: 0
   death: 0
@@ -392,6 +393,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b52a7128a6f938c40ab9ba7359a02179, type: 3}
   - {fileID: 8300000, guid: 4ef4abb90edd95f45b3ac89c13376590, type: 3}
   Boss: {fileID: 0}
+  dashImage: {fileID: 0}
 --- !u!61 &6620171587779819841
 BoxCollider2D:
   m_ObjectHideFlags: 0
