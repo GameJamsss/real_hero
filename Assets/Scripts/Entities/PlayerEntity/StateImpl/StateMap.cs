@@ -5,7 +5,7 @@ using Assets.Scripts.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Assets.Scripts.Entities.PlayerEntity
 {
@@ -15,42 +15,51 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		private static readonly SlideModifier sm = new SlideModifier();
 		private static readonly GenericJumpModifier gjm = new GenericJumpModifier();
 		private static readonly GravityFallModifier gfm = new GravityFallModifier();
-		private static readonly GenericDamageModifier gam = new GenericDamageModifier(1);
 		private static readonly DashOffsetResetModifier dorm = new DashOffsetResetModifier();
 
 		public static State<Player> Idle = new State<Player>("Idle", (ulong)StatePriority.Idle)
-			.SetOnStateEnter(e =>
-			{
-				e.AirJumpsCounter = 0;
-				e.Animation.Play("Idle");
+			.SetOnStateEnter(entity =>
+            {
+                entity.AirJumpsCounter = 0;
+                entity.Animation.Play("Idle");
 			})
 			.AddModifier(dorm)
 			.AddModifier(sm);
 
 		public static State<Player> Move = new State<Player>("Move", (ulong)StatePriority.Move)
-			.SetOnStateEnter(e =>
+			.SetOnStateEnter(entity =>
 			{
-				e.Animation.Play("Run");
+                entity.Animation.Play("Run");
 			})
 			.SetEnterCondition(entity => Input.GetButton("Horizontal"))
 			.AddModifier(dorm)
 			.AddModifier(gmm);
 
 		public static State<Player> Jump = new State<Player>("Jump", (ulong)StatePriority.Jump)
-			.SetEnterCondition(entity => Input.GetButton("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps && Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask))
+			.SetEnterCondition(entity => Input.GetButtonDown("Jump") && Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask))
 			.SetOnStateEnter(entity =>
 			{
+				entity.AirJumpsCounter = 0;
 				entity.Animation.Play("jump");
-				entity.AirJumpsCounter = 1;
-				//entity.AirJumpsCounter +=
-				//    Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask) ? 0 : 1;
 			}
 			)
 			.AddModifier(gmm)
 			.AddModifier(dorm)
 			.AddModifier(gjm);
 
-		public static State<Player> Fall = new State<Player>("Fall", (ulong)StatePriority.Fall)
+        public static State<Player> AirJump = new State<Player>("AirJump", (ulong)StatePriority.AirJump)
+            .SetEnterCondition(entity => Input.GetButtonDown("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps)
+            .SetOnStateEnter(entity =>
+            {
+                entity.Animation.Play("jump");
+                entity.AirJumpsCounter = entity.AirJumpsCounter + 1;
+                entity.Rigidbody.velocity = new Vector2(entity.Rigidbody.velocity.x, entity.AirJumpHeight);
+            }
+            )
+            .AddModifier(gmm)
+            .AddModifier(dorm);
+
+        public static State<Player> Fall = new State<Player>("Fall", (ulong)StatePriority.Fall)
 			.SetEnterCondition(entity =>
 				!Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask)
 			)
@@ -69,8 +78,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			.ToBlack(Move);
 
 		public static State<Player> Dash = new State<Player>("Dash", (ulong)StatePriority.Dash)
-			.SetEnterCondition(entity => Input.GetButton("Dash") && entity.CurrentDashOffsetSec > entity.DashOffsetSec &&
-										 Input.GetButton("Horizontal"))
+			.SetEnterCondition(entity => Input.GetButton("Dash") && entity.CurrentDashOffsetSec > entity.DashOffsetSec)
 			.SetOnStateEnter(entity =>
 				{
 					entity.PlayDash();
@@ -87,7 +95,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 					entity.CurrentDashTimeSec += Time.deltaTime;
 					float vector =
 						Mathf.Sign(entity.CurrentDashTimeSec > entity.UncontrollableDashTimeSec
-							? Input.GetAxis("Horizontal")
+							? entity.transform.localScale.x
 							: entity.LastDashVector);
 
 					entity.Rigidbody.velocity = Vector2.right * entity.DashPower * vector;
@@ -106,7 +114,6 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			)
 			.SetOnStateEnter(entity =>
 				{
-					//Damage.Lock = true;
 					entity.CurrentStunDuration = 0f;
 					List<Collider2D> colliders = new List<Collider2D>();
 					entity.Collider.OverlapCollider(new ContactFilter2D().NoFilter(), colliders);
@@ -117,12 +124,6 @@ namespace Assets.Scripts.Entities.PlayerEntity
 					if (goDamageZone != null)
 					{
 						entity.Damaged(goDamageZone.GetComponent<Damagable>().GetDamage());
-						//entity.Rigidbody.velocity =
-						new Vector2(
-							(
-								entity.transform.position.x - goDamageZone.transform.position.x) * entity.KnockBackPower,
-								entity.KnockUpPower
-							);
 					}
 				}
 			)

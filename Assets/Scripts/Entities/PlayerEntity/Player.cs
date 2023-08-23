@@ -4,6 +4,7 @@ using Assets.Scripts.Entities.BossEntity;
 using Assets.Scripts.StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Entities.PlayerEntity
@@ -22,7 +23,10 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		[Header("Jump height")]
 		[SerializeField] public float JumpHeight = 5.0f;
 
-		[Header("Max air jumps")]
+		[Header("Air Jump height")]
+		[SerializeField] public float AirJumpHeight = 2.5f;
+
+        [Header("Max air jumps")]
 		[SerializeField] public int MaxAirJumps = 1;
 
 		[Header("Fall gravity scale")]
@@ -105,7 +109,6 @@ namespace Assets.Scripts.Entities.PlayerEntity
 
 		private float _walkAudioMultiplier = 5.0f;
 
-
 		public Image dashImage;
 		void Start()
 		{
@@ -131,37 +134,38 @@ namespace Assets.Scripts.Entities.PlayerEntity
 				.AddState(StateMap.Idle)
 				.AddState(StateMap.Move)
 				.AddState(StateMap.Jump)
+				.AddState(StateMap.AirJump)
 				.AddState(StateMap.Fall)
 				.AddState(StateMap.MoveUp)
 				.AddState(StateMap.Damage)
 				.AddState(StateMap.Dash)
-			);
-
-		}
-
-		void Update()
-		{
+            );
+        }
+		bool a = true;
+        void Update()
+        {
 			if (!death && !Boss.death)
 			{
 				fsm.Run();
-			}
-			//Debug.Log(fsm.CurrentState.Name);
-
-			if (Input.GetButton("Fire1"))
-			{
-				Attack();
-			}
-			if (isAttacking)
-			{
-				cooldownTimer -= Time.deltaTime;
-				if (cooldownTimer <= 0)
-				{
-					isAttacking = false;
-				}
-			}
+				//Debug.Log(AirJumpsCounter + " : " + MaxAirJumps + " : " + fsm.CurrentState.Name);
+				rotateSprite();
+                if (Input.GetButton("Fire1"))
+                {
+                    Attack();
+                }
+                if (isAttacking)
+                {
+                    cooldownTimer -= Time.deltaTime;
+                    if (cooldownTimer <= 0)
+                    {
+                        isAttacking = false;
+                    }
+                }
+                dashImage.fillAmount = CurrentDashOffsetSec / DashOffsetSec;
+            }
 			// TODO: может жестко, но вроде понятно
 			//Animation.enabled = !_isDamaged;
-			dashImage.fillAmount = CurrentDashOffsetSec / DashOffsetSec;
+			
 		}
 
 		public void Damaged(int damage)
@@ -248,6 +252,13 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			dash.SetActive(true);
 			yield return new WaitForSeconds(0.3f);
 			dash.SetActive(false);
+		}
+
+		private void rotateSprite()
+		{
+            float input = Input.GetAxis("Horizontal");
+			if (input < 0) transform.localScale = new Vector3(-1, 1, 1);
+			else if (input > 0) transform.localScale = new Vector3(1, 1, 1);
 		}
 	}
 }
