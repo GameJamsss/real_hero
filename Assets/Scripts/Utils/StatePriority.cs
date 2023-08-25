@@ -8,11 +8,9 @@
         MoveUp = 4,
         AirJump = 5,
         Jump = 6,
-        Attack1 = 7,
-        Attack2 = 8,
-        Attack3 = 9,
-        Damage = 10,
-        Dash = 11,
+        Attack = 7,
+        Damage = 8,
+        Dash = 9,
     }
     public enum StatePriorityBoss : ulong
     {

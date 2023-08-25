@@ -86,8 +86,8 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		public float attackDuration = 0.01f; // Длительность hitball
 
 
-		private bool isAttacking = false;
-		private float cooldownTimer = 0.0f;
+        public bool isAttacking = false;
+		public float cooldownTimer = 0.0f;
 
 		[SerializeField]
 		public Color _blinkColor = Color.red;
@@ -124,9 +124,6 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
 			if (rb) Rigidbody = rb; else Debug.LogError(gameObject.name + " need Rigidbody2d");
 
-			//GameObject attackArea = GameObject.Find("AttackArea");
-			//if (attackArea) AttackObjectTest = attackArea; else Debug.LogError("Need attack area object on: " + gameObject.name);
-
 			LastDashVector = transform.localScale.x;
 
 			fsm = new StateMachine<Player>(
@@ -139,6 +136,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 				.AddState(StateMap.MoveUp)
 				.AddState(StateMap.Damage)
 				.AddState(StateMap.Dash)
+				.AddState(StateMap.Attack)
             );
         }
 		bool a = true;
@@ -147,25 +145,11 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			if (!death && !Boss.death)
 			{
 				fsm.Run();
-				//Debug.Log(AirJumpsCounter + " : " + MaxAirJumps + " : " + fsm.CurrentState.Name);
 				rotateSprite();
-                if (Input.GetButton("Fire1"))
-                {
-                    Attack();
-                }
-                if (isAttacking)
-                {
-                    cooldownTimer -= Time.deltaTime;
-                    if (cooldownTimer <= 0)
-                    {
-                        isAttacking = false;
-                    }
-                }
                 dashImage.fillAmount = CurrentDashOffsetSec / DashOffsetSec;
             }
 			// TODO: может жестко, но вроде понятно
 			//Animation.enabled = !_isDamaged;
-			
 		}
 
 		public void Damaged(int damage)
@@ -173,16 +157,6 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			damaged?.Invoke(damage);
 			StartCoroutine(HurtAndStun());
 			_isDamaged = true;
-		}
-
-		public void Attack()
-		{
-			if (!isAttacking)
-			{
-				isAttacking = true;
-				cooldownTimer = attackCooldown;
-				Animation.Play("attack");
-			}
 		}
 		private IEnumerator Hit()
 		{

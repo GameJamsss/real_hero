@@ -5,7 +5,6 @@ using Assets.Scripts.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Assets.Scripts.Entities.PlayerEntity
 {
@@ -51,7 +50,6 @@ namespace Assets.Scripts.Entities.PlayerEntity
             .SetEnterCondition(entity => Input.GetButtonDown("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps)
             .SetOnStateEnter(entity =>
             {
-                entity.Animation.Play("jump");
                 entity.AirJumpsCounter = entity.AirJumpsCounter + 1;
                 entity.Rigidbody.velocity = new Vector2(entity.Rigidbody.velocity.x, entity.AirJumpHeight);
             }
@@ -63,6 +61,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			.SetEnterCondition(entity =>
 				!Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask)
 			)
+			.SetOnStateEnter(entity => entity.Animation.Play("fallJump"))
 			.AddModifier(gmm)
 			.AddModifier(dorm)
 			.AddModifier(gfm)
@@ -73,6 +72,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 				entity.Rigidbody.velocity.y > 0f
 				&& !Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask)
 			)
+			.SetOnStateEnter(entity => entity.Animation.Play("jump"))
 			.AddModifier(gmm)
 			.AddModifier(dorm)
 			.ToBlack(Move);
@@ -87,7 +87,6 @@ namespace Assets.Scripts.Entities.PlayerEntity
 					entity.CurrentDashTimeSec = 0f;
 					entity.Rigidbody.velocity = Vector2.zero;
 					entity.LastDashVector = entity.transform.localScale.x;
-
 				}
 			)
 			.SetStateLogic(entity =>
@@ -127,56 +126,25 @@ namespace Assets.Scripts.Entities.PlayerEntity
 					}
 				}
 			)
-			.SetStateLogic(entity =>
-				{
-					entity.CurrentStunDuration += Time.deltaTime;
-					if (entity.CurrentStunDuration > entity.blinkingDuration)
-					{
-						//Damage.Lock = false;
-					}
-				}
-			)
 			.AddModifier(dorm);
 
-		//  public static State<Player> Attack1 = new State<Player>("Attack1", (ulong) StatePriority.Attack1)
-		//      .SetOnStateEnter(entity => 
-		//
-		//  {
-		//      Attack1.Lock = true;
-		// }
-		//      )
-		//      .SetStateLogic(entity => 
-		//      {
-		//          float firstAttackDelayTest = 2.0f;
-		//      })
-		//      .SetEnterCondition(entity => Input.GetButton("Fire1"))
-		//      .AddModifier(gam)
-		//      .AddModifier(sm);
-
-		//public static State<Player> Attack2 = new State<Player>("Attack2", (ulong) StatePriority.Attack2)
-		//    .SetOnStateEnter(entity => 
-		//        { 
-
-		//            Attack2.Lock = true; 
-		//        } 
-		//    )
-		//    .SetStateLogic(entity => 
-		//        {
-
-		//        }
-		//    )
-		//    .SetEnterCondition(entity => true)
-		//    .AddModifier(gam)
-		//    .AddModifier(sm);
-
-		//public static State<Player> Attack3 = new State<Player>("Attack3", (ulong) StatePriority.Attack3)
-		//    .SetOnStateEnter(entity => Attack3.Lock = true)
-		//    .SetStateLogic(entity => 
-		//    {
-
-		//    })
-		//    .SetEnterCondition(entity => true)
-		//    .AddModifier(gam)
-		//    .AddModifier(sm);
+        public static State<Player> Attack1 = new State<Player>("Attack", (ulong)StatePriority.Attack)
+            .SetEnterCondition(entity => Input.GetButtonDown("Fire1") && Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask))
+            .SetOnStateEnter(entity =>
+			{
+				Attack1.Lock = true;
+                entity.cooldownTimer = 0;
+                entity.Animation.Play("attack");
+            })
+			.SetStateLogic(entity =>
+			{
+				float animLength = entity.Animation.GetCurrentAnimatorStateInfo(0).length;
+                entity.cooldownTimer = entity.cooldownTimer + Time.deltaTime;
+				if ((entity.cooldownTimer > entity.attackCooldown && Input.anyKeyDown) || entity.cooldownTimer > animLength)
+				{
+                    Attack1.Lock = false;
+				}
+            })
+			.AddModifier(sm);
 	}
 }
