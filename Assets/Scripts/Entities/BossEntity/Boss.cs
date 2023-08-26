@@ -9,9 +9,10 @@ namespace Assets.Scripts.Entities.BossEntity
 {
 	public class Boss : MonoBehaviour
 	{
-		public GameObject pointToSpawnCar;
 		public GameObject car;
-		public GameObject pointToSpawnNail;
+        public GameObject pointToSpawnCarMarker;
+        public GameObject CarMarker;
+        public GameObject pointToSpawnNail;
 		public GameObject nail;
 		public GameObject pointToSpawnNailMarker;
 		public GameObject NailMarker;
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Entities.BossEntity
 		public event Action<int> damaged;
 
 		public NailMarker currentNailMarker;
+		public GameObject currentCarMarker;
 		public bool isIdle;
 		public bool isDefaultAttack;
 		public bool isNailShots;
@@ -42,9 +44,9 @@ namespace Assets.Scripts.Entities.BossEntity
 
 		[Header("CarThrow")]
 		public float CarThrowTimer;
-		public float CurrentCarThrowTimer;
-		public int carThrowCount;
-		public int carThrowAnimCount;
+        public float CarThrowMarkerTimer;
+
+        public float CurrentCarThrowTimer;
 		public bool isCarThrowPlay;
 
 		[Header("NailShot")]
@@ -225,53 +227,47 @@ namespace Assets.Scripts.Entities.BossEntity
 		{
 			isCarThrowPlay = true;
 			Animation.Play("Throw_car");
-			if (Health < 50 && carThrowAnimCount == 0)
-			{
-				carThrowAnimCount = 1;
-			}
-			else
-			{
-				carThrowAnimCount = 0;
-			}
-		}
 
-		public void NextCarThrow()
-		{
-			if (carThrowAnimCount > 0)
-			{
-				CarThrow();
-			}
-			else
-			{
-				isCarThrowPlay = false;
-				if (Health < 50)
-				{
-					carThrowCount = 2;
-				}
-				else
-				{
-					carThrowCount = 1;
-				}
+        }
 
-				Animation.Play("Idle");
-			}
-		}
 
-		public void ExitCarThrow()
-		{
-			carThrowAnimCount = 0;
-			carThrowCount = 0;
-			isCarThrowPlay = false;
-			isCarThrow = false;
-			isIdle = true;
-		}
+        public void NextCarThrow()
+        {
+            isCarThrowPlay = false;
+            isCarThrow = false;
+            isIdle = true;
+            MakeMarkerCarShot();
+            StartCoroutine(ThrowCarTimer());
+        }
+
+
+        public IEnumerator ThrowCarTimer()
+        {
+            yield return new WaitForSeconds(CarThrowTimer);
+            SpawnCar();
+        }
+
+
 		public void SpawnCar()
 		{
-			var obj = Instantiate(car, pointToSpawnCar.transform.position, Quaternion.identity);
-			obj.transform.position = new Vector3(player.position.x, pointToSpawnCar.transform.position.y, car.transform.position.z);
-		}
+			if (currentCarMarker)
+			{
+                var obj = Instantiate(car, currentCarMarker.transform.position, Quaternion.identity);
+                obj.transform.position = new Vector3(currentCarMarker.transform.position.x, currentCarMarker.transform.position.y+4.7f, car.transform.position.z);
+                StartCoroutine(DestroyCarMarkerTimer());
+            }
+        }
 
-		public void SpawnEarth()
+        public IEnumerator DestroyCarMarkerTimer()
+        {
+            yield return new WaitForSeconds(CarThrowMarkerTimer);
+            if (currentCarMarker)
+            {
+                Destroy(currentCarMarker);
+            }
+        }
+
+        public void SpawnEarth()
 		{
 			if (Health < 50)
 			{
@@ -347,8 +343,15 @@ namespace Assets.Scripts.Entities.BossEntity
 			}
 		}
 
+        public void MakeMarkerCarShot()
+        {
+            var obj = Instantiate(CarMarker, pointToSpawnCarMarker.transform.position, Quaternion.identity);
+            obj.transform.position = new Vector3(player.position.x, pointToSpawnCarMarker.transform.position.y, CarMarker.transform.position.z);
+            currentCarMarker = obj;
+        }
 
-		public void Damage(int damage)
+
+        public void Damage(int damage)
 		{
 			if (Health < 50 && !SecondStage)
 			{

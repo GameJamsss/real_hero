@@ -40,8 +40,13 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 1;
 		SceneManager.LoadScene(0);
 	}
+    public void RestartLevel()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
+    }
 
-	public void AfterWin()
+    public void AfterWin()
 	{
 		Time.timeScale = 1;
 		StaticData.isOpenEnterNameScreen = true;

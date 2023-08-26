@@ -8,6 +8,7 @@ namespace Assets.Scripts.Entities.BossEntity
 {
     public static class StateMapBoss
     {
+        private static readonly GenericMoveModifier gmm = new GenericMoveModifier();
 
         public static State<Boss> Idle = new State<Boss>("Idle", (ulong)StatePriorityBoss.Idle)
             .SetEnterCondition(boss => boss.isIdle)
@@ -16,6 +17,7 @@ namespace Assets.Scripts.Entities.BossEntity
                 boss.isHaunt = false;
                 boss.CurrentIdleTimer = 0f;
                 boss.IdleTimer = Random.Range(boss.MinIdleTime, boss.MaxIdleTime);
+                Debug.Log("STATE Idle");
             })
             .SetStateLogic(boss =>
             {
@@ -52,6 +54,7 @@ namespace Assets.Scripts.Entities.BossEntity
             new State<Boss>("DefaultAttack", (ulong) StatePriorityBoss.DefaultAttack)
                 .SetEnterCondition(boss => boss.isDefaultAttack)
                 .SetOnStateEnter(boss => {
+                    Debug.Log("STATE DefaultAttack");
                     boss.isHaunt = true;
                     boss.CurrentDefaultAttackTimer = 0f;
                     boss.defaultAttacCount = 0;
@@ -88,6 +91,7 @@ namespace Assets.Scripts.Entities.BossEntity
         public static State<Boss> NailShots = new State<Boss>("NailShots", (ulong) StatePriorityBoss.NailShots)
             .SetEnterCondition(boss => boss.isNailShots)
             .SetOnStateEnter(boss => {
+                Debug.Log("STATE NailShots");
                 boss.isHaunt = false;
                 boss.MakeMarkerNailShots();
                 boss.CurrentNailShotsTimer = 0f;
@@ -103,47 +107,27 @@ namespace Assets.Scripts.Entities.BossEntity
         public static State<Boss> CarThrow = new State<Boss>("CarThrow", (ulong) StatePriorityBoss.CarThrow)
             .SetEnterCondition(boss => boss.isCarThrow)
             .SetOnStateEnter(boss => {
+                Debug.Log("STATE CarThrow");
                 boss.CarThrow();
                 boss.isHaunt = false;
                 boss.CurrentCarThrowTimer = 0f;
             })
             .SetStateLogic(boss => {
-                if (!boss.isCarThrowPlay){
-                    boss.CurrentCarThrowTimer += Time.deltaTime;
-                    if (boss.CarThrowTimer <= boss.CurrentCarThrowTimer && !boss.isCarThrowPlay){
-                        switch (boss.carThrowCount){
-                            case 1:
-                                boss.SpawnCar();
-                                boss.CurrentCarThrowTimer = 0f;
-                                boss.carThrowCount--;
-                                boss.ExitCarThrow();
-                                break;
-                            case 2:
-                                boss.SpawnCar();
-                                boss.CurrentCarThrowTimer = 0f;
-                                boss.carThrowCount--;
-                                break;
-                            default:
-                                boss.ExitCarThrow();
-                                break;
-                        }
-
-                    }
-                }
             });
 
         public static State<Boss> StrongAttacks = new State<Boss>("StrongAttacks", (ulong)StatePriorityBoss.StrongAttacks)
             .SetEnterCondition(boss => boss.isStrongAttacks)
             .SetOnStateEnter(boss =>
             {
+                Debug.Log("STATE StrongAttacks");
                 boss.isHaunt = true;
                 boss.CurrentStrongAttacksTimer = 0f;
                 boss.defaultAttacCount = 0;
             })
             .SetStateLogic(boss => {
-                if (!boss.isDefaultAttackPlay) {
+                if (!boss.isDefaultAttackPlay){
                     boss.CurrentStrongAttacksTimer += Time.deltaTime;
-                    if (boss.StrongAttacksTimer <= boss.CurrentStrongAttacksTimer) {
+                    if (boss.StrongAttacksTimer <= boss.CurrentStrongAttacksTimer){
                         switch (boss.defaultAttacCount){
                             case 0:
                                 boss.DefaultAttack();
@@ -171,6 +155,7 @@ namespace Assets.Scripts.Entities.BossEntity
             .SetEnterCondition(boss => boss.isVulnerable)
             .SetOnStateEnter(boss =>
             {
+                Debug.Log("STATE Vulnerable");
                 boss.CurrentVulnerableTimer = 0f;
                 boss.Vulnerable();
             })

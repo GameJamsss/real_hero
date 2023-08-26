@@ -12,7 +12,7 @@ public class HealthBarPlayer : MonoBehaviour{
     public event Action death;
     public void NextImage(int value){
         currentImageIndex=currentImageIndex+value;
-        if (currentImageIndex >= sprites.Length)
+        if (currentImageIndex >= sprites.Length-1)
         {
             death?.Invoke();
         }

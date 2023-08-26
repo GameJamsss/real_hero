@@ -128,6 +128,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6810759197862290442, guid: e4eef74a734cfd24ca0726cdc671a3c7, type: 3}
   m_PrefabInstance: {fileID: 6810759197741924232}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &273006731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 273006732}
+  m_Layer: 0
+  m_Name: CarlMarkerSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &273006732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273006731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &274033118
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +224,7 @@ RectTransform:
   - {fileID: 1817158806}
   - {fileID: 622217700}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -481,7 +512,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &963265644 stripped
 Transform:
@@ -546,6 +577,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1250721613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6810759197046811172, guid: e4eef74a734cfd24ca0726cdc671a3c7, type: 3}
+  m_PrefabInstance: {fileID: 6810759197741924232}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1250721616
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250721613}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 84570419ccce76e4480739663a81e103, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1308940464
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +658,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1483656217 stripped
 Transform:
@@ -1222,10 +1278,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1245623860394141557, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 8.6
+    - target: {fileID: 518594355, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 86
       objectReference: {fileID: 0}
+    - target: {fileID: 518594355, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 518594356, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5729f54ab4b704941abad85bfdbb20ea, type: 3}
+    - target: {fileID: 1793329113, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 768566360}
     - target: {fileID: 6192048804267739204, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1318,10 +1386,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
-    - target: {fileID: 6192048804267739210, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
-      propertyPath: m_ScreenMatchMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6192048804485723641, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1376,7 +1440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6810759197862290442, guid: e4eef74a734cfd24ca0726cdc671a3c7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -8.97
       objectReference: {fileID: 0}
     - target: {fileID: 6810759197862290442, guid: e4eef74a734cfd24ca0726cdc671a3c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1414,6 +1478,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810759197862290443, guid: e4eef74a734cfd24ca0726cdc671a3c7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 342d9fcd235f3724dad54339c890a027, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4eef74a734cfd24ca0726cdc671a3c7, type: 3}
 --- !u!1001 &6900473719913614505
@@ -1432,9 +1500,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 963265644}
     - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
+      propertyPath: CarMarker
+      value: 
+      objectReference: {fileID: 309605920592301914, guid: 17d57ad0aea4fd24b8b1eb24d8a2ffa8, type: 3}
+    - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
+      propertyPath: CarThrowTimer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
+      propertyPath: StateAtackCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
       propertyPath: pointToSpawnCar
       value: 
       objectReference: {fileID: 556652504}
+    - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
+      propertyPath: CarThrowMarkerTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
+      propertyPath: pointToSpawnCarMarker
+      value: 
+      objectReference: {fileID: 273006731}
     - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
       propertyPath: pointToSpawnNailMarker
       value: 
