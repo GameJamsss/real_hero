@@ -18,9 +18,9 @@ namespace Assets.Scripts.Entities.PlayerEntity
 
 		public static State<Player> Idle = new State<Player>("Idle", (ulong)StatePriority.Idle)
 			.SetOnStateEnter(entity =>
-            {
-                entity.AirJumpsCounter = 0;
-                entity.Animation.Play("Idle");
+			{
+				entity.AirJumpsCounter = 0;
+				entity.Animation.Play("Idle");
 			})
 			.AddModifier(dorm)
 			.AddModifier(sm);
@@ -128,23 +128,23 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			)
 			.AddModifier(dorm);
 
-        public static State<Player> Attack1 = new State<Player>("Attack", (ulong)StatePriority.Attack)
-            .SetEnterCondition(entity => Input.GetButtonDown("Fire1") && Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask))
-            .SetOnStateEnter(entity =>
+		public static State<Player> Attack = new State<Player>("Attack", (ulong)StatePriority.Attack)
+			.SetEnterCondition(entity => Input.GetButtonDown("Fire1") && Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask))
+			.SetOnStateEnter(entity =>
 			{
-				Attack1.Lock = true;
-                entity.cooldownTimer = 0;
-                entity.Animation.Play("attack");
-            })
+				Attack.Lock = true;
+				entity.cooldownTimer = 0;
+				entity.Animation.Play("attack");
+			})
 			.SetStateLogic(entity =>
 			{
 				float animLength = entity.Animation.GetCurrentAnimatorStateInfo(0).length;
-                entity.cooldownTimer = entity.cooldownTimer + Time.deltaTime;
+				entity.cooldownTimer = entity.cooldownTimer + Time.deltaTime;
 				if ((entity.cooldownTimer > entity.attackCooldown && Input.anyKeyDown) || entity.cooldownTimer > animLength)
 				{
-                    Attack1.Lock = false;
+					Attack.Lock = false;
 				}
-            })
+			})
 			.AddModifier(sm);
 	}
 }

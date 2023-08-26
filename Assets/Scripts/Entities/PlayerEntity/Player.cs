@@ -47,12 +47,6 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		[Header("blinkingDuration duration in seconds")]
 		[SerializeField] public float blinkingDuration = 0.8f;
 
-		[Header("Knock back power")]
-		[SerializeField] public float KnockBackPower = 2f;
-
-		[Header("Knock up power")]
-		[SerializeField] public float KnockUpPower = 2f;
-
 		[Header("Ground Layer Mask")]
 		[SerializeField] public LayerMask GroundMask;
 
@@ -139,7 +133,7 @@ namespace Assets.Scripts.Entities.PlayerEntity
 				.AddState(StateMap.Attack)
             );
         }
-		bool a = true;
+
         void Update()
         {
 			if (!death && !Boss.death)

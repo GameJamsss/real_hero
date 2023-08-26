@@ -17,9 +17,10 @@ namespace Assets.Scripts.Entities.PlayerEntity.ModifierImpl
 
         public override void UpdateModify(Player entity)
         {
-            float speedDiff = 0 - entity.Rigidbody.velocity.x;
-            float movement = Mathf.Abs(speedDiff) * entity.Decceleration * Mathf.Sign(speedDiff);
-            entity.Rigidbody.AddForce(movement * Vector2.right);
+            //float speedDiff = 0 - entity.Rigidbody.velocity.x;
+            //float movement = Mathf.Abs(speedDiff) * entity.Decceleration * Mathf.Sign(speedDiff);
+            //entity.Rigidbody.AddForce(movement * Vector2.right);\
+            entity.Rigidbody.velocity = Vector2.zero;
         }
     }
 }
