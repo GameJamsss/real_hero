@@ -269,6 +269,7 @@ namespace Assets.Scripts.Entities.BossEntity
 
 		public void SpawnEarth()
 		{
+
 			if (Health < 50)
 			{
 				earthCount = (int)(earthCount * 1.5f);
