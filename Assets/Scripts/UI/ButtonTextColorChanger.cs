@@ -16,7 +16,7 @@ public class ButtonTextColorChanger : MonoBehaviour
 	[SerializeField]
 	private float scaleMultiplier = 1.2f;
 	[SerializeField]
-	private float animationDuration = 0.8f;
+	private float animationDuration = 0.4f;
 
 	private bool isAnimating = false;
 
