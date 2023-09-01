@@ -1255,6 +1255,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
+      propertyPath: attackCooldown
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
+      propertyPath: attackDuration
+      value: 0.0105
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539605771784601218, guid: 6d9859a5fb6b84a4f8c181881de28ec5, type: 3}
       propertyPath: FallGravityScale
       value: 4
       objectReference: {fileID: 0}
@@ -1496,6 +1504,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 309605920592301914, guid: 17d57ad0aea4fd24b8b1eb24d8a2ffa8, type: 3}
     - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
+      propertyPath: MinIdleTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
       propertyPath: CarThrowTimer
       value: 3
       objectReference: {fileID: 0}
@@ -1504,9 +1516,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
+      propertyPath: VulnerableTimer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
       propertyPath: pointToSpawnCar
       value: 
       objectReference: {fileID: 556652504}
+    - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
+      propertyPath: StrongAttacksTimer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5568488323398047397, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
       propertyPath: CarThrowMarkerTimer
       value: 1

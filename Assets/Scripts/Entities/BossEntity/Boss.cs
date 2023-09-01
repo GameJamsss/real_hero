@@ -10,9 +10,9 @@ namespace Assets.Scripts.Entities.BossEntity
 	public class Boss : MonoBehaviour
 	{
 		public GameObject car;
-        public GameObject pointToSpawnCarMarker;
-        public GameObject CarMarker;
-        public GameObject pointToSpawnNail;
+		public GameObject pointToSpawnCarMarker;
+		public GameObject CarMarker;
+		public GameObject pointToSpawnNail;
 		public GameObject nail;
 		public GameObject pointToSpawnNailMarker;
 		public GameObject NailMarker;
@@ -44,9 +44,9 @@ namespace Assets.Scripts.Entities.BossEntity
 
 		[Header("CarThrow")]
 		public float CarThrowTimer;
-        public float CarThrowMarkerTimer;
+		public float CarThrowMarkerTimer;
 
-        public float CurrentCarThrowTimer;
+		public float CurrentCarThrowTimer;
 		public bool isCarThrowPlay;
 
 		[Header("NailShot")]
@@ -228,46 +228,46 @@ namespace Assets.Scripts.Entities.BossEntity
 			isCarThrowPlay = true;
 			Animation.Play("Throw_car");
 
-        }
+		}
 
 
-        public void NextCarThrow()
-        {
-            isCarThrowPlay = false;
-            isCarThrow = false;
-            isIdle = true;
-            MakeMarkerCarShot();
-            StartCoroutine(ThrowCarTimer());
-        }
+		public void NextCarThrow()
+		{
+			isCarThrowPlay = false;
+			isCarThrow = false;
+			isIdle = true;
+			MakeMarkerCarShot();
+			StartCoroutine(ThrowCarTimer());
+		}
 
 
-        public IEnumerator ThrowCarTimer()
-        {
-            yield return new WaitForSeconds(CarThrowTimer);
-            SpawnCar();
-        }
+		public IEnumerator ThrowCarTimer()
+		{
+			yield return new WaitForSeconds(CarThrowTimer);
+			SpawnCar();
+		}
 
 
 		public void SpawnCar()
 		{
 			if (currentCarMarker)
 			{
-                var obj = Instantiate(car, currentCarMarker.transform.position, Quaternion.identity);
-                obj.transform.position = new Vector3(currentCarMarker.transform.position.x, currentCarMarker.transform.position.y+4.7f, car.transform.position.z);
-                StartCoroutine(DestroyCarMarkerTimer());
-            }
-        }
+				var obj = Instantiate(car, currentCarMarker.transform.position, Quaternion.identity);
+				obj.transform.position = new Vector3(currentCarMarker.transform.position.x, currentCarMarker.transform.position.y + 4.7f, car.transform.position.z);
+				StartCoroutine(DestroyCarMarkerTimer());
+			}
+		}
 
-        public IEnumerator DestroyCarMarkerTimer()
-        {
-            yield return new WaitForSeconds(CarThrowMarkerTimer);
-            if (currentCarMarker)
-            {
-                Destroy(currentCarMarker);
-            }
-        }
+		public IEnumerator DestroyCarMarkerTimer()
+		{
+			yield return new WaitForSeconds(CarThrowMarkerTimer);
+			if (currentCarMarker)
+			{
+				Destroy(currentCarMarker);
+			}
+		}
 
-        public void SpawnEarth()
+		public void SpawnEarth()
 		{
 			if (Health < 50)
 			{
@@ -343,15 +343,15 @@ namespace Assets.Scripts.Entities.BossEntity
 			}
 		}
 
-        public void MakeMarkerCarShot()
-        {
-            var obj = Instantiate(CarMarker, pointToSpawnCarMarker.transform.position, Quaternion.identity);
-            obj.transform.position = new Vector3(player.position.x, pointToSpawnCarMarker.transform.position.y, CarMarker.transform.position.z);
-            currentCarMarker = obj;
-        }
+		public void MakeMarkerCarShot()
+		{
+			var obj = Instantiate(CarMarker, pointToSpawnCarMarker.transform.position, Quaternion.identity);
+			obj.transform.position = new Vector3(player.position.x, pointToSpawnCarMarker.transform.position.y, CarMarker.transform.position.z);
+			currentCarMarker = obj;
+		}
 
 
-        public void Damage(int damage)
+		public void Damage(int damage)
 		{
 			if (Health < 50 && !SecondStage)
 			{
@@ -360,6 +360,7 @@ namespace Assets.Scripts.Entities.BossEntity
 
 			Health = Health - damage;
 			damaged?.Invoke(Health);
+			Debug.Log("damage - " + damage);
 			Debug.Log("HEalth boss " + Health);
 		}
 

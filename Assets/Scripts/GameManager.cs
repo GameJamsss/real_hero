@@ -40,13 +40,13 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 1;
 		SceneManager.LoadScene(0);
 	}
-    public void RestartLevel()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(1);
-    }
+	public void RestartLevel()
+	{
+		Time.timeScale = 1;
+		SceneManager.LoadScene(1);
+	}
 
-    public void AfterWin()
+	public void AfterWin()
 	{
 		Time.timeScale = 1;
 		StaticData.isOpenEnterNameScreen = true;
@@ -83,11 +83,11 @@ public class GameManager : MonoBehaviour
 				this.Continue();
 			}
 		}
-		//TODO: Delete this before build - N for test WinScreen
-		if (Input.GetKeyDown(KeyCode.N))
-		{
-			boss.Damage(100);
-		}
+		// //TODO: Delete this before build - N for test WinScreen
+		// if (Input.GetKeyDown(KeyCode.N))
+		// {
+		// 	boss.Damage(100);
+		// }
 
 	}
 
