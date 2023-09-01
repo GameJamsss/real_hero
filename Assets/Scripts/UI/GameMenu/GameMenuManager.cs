@@ -35,6 +35,8 @@ public class GameMenuManager : MonoBehaviour
 
 	public bool isTimeRun;
 
+	private bool isPaused;
+
 	private void Awake()
 	{
 		_audioSource = GetComponent<AudioSource>();
@@ -50,15 +52,31 @@ public class GameMenuManager : MonoBehaviour
 
 		InvokeRepeating("SubtractHits", 0f, _hitsCooldownValue);
 		isTimeRun = true;
-	}
+        Time.timeScale = 1;
+    }
 
 	//delete
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
-			AddPointsAndHits(1, 1);
+		//if (Input.GetKeyDown(KeyCode.Space))
+			//AddPointsAndHits(1, 1);
 
 		//_timer.text = _curTimer.ToString(); //запихнуть в корутин с таймером
+
+		if (Input.GetButtonDown("Cancel"))
+		{
+			if (!isPaused)
+			{
+                ShowPausePanel();
+                Time.timeScale = 0;
+            }
+			else
+			{
+                HideAllPanels();
+				isPaused = false;
+                Time.timeScale = 1;
+            }
+        }
 	}
 
 	private GameMenuManager() { }
@@ -85,6 +103,7 @@ public class GameMenuManager : MonoBehaviour
 
 	public void ShowPausePanel()
 	{
+		isPaused = true;
 		HideAllPanels();
 		_pausePanel.SetActive(true);
 	}

@@ -22,7 +22,8 @@ namespace Assets.Scripts.Entities.PlayerEntity
 				entity.AirJumpsCounter = 0;
 				entity.Animation.Play("Idle");
 			})
-			.AddModifier(dorm)
+			.SetStateLogic(entity => entity.Rigidbody.velocity = Vector2.zero)
+            .AddModifier(dorm)
 			.AddModifier(sm);
 
 		public static State<Player> Move = new State<Player>("Move", (ulong)StatePriority.Move)
