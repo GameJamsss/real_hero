@@ -28,9 +28,9 @@ namespace Assets.Scripts.Entities.PlayerEntity
 		public static State<Player> Move = new State<Player>("Move", (ulong)StatePriority.Move)
 			.SetOnStateEnter(entity =>
 			{
-                entity.Animation.Play("Run");
+				entity.Animation.Play("Run");
 			})
-			.SetEnterCondition(entity => Input.GetButton("Horizontal"))
+			.SetEnterCondition(entity => Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f)
 			.AddModifier(dorm)
 			.AddModifier(gmm);
 
@@ -46,18 +46,18 @@ namespace Assets.Scripts.Entities.PlayerEntity
 			.AddModifier(dorm)
 			.AddModifier(gjm);
 
-        public static State<Player> AirJump = new State<Player>("AirJump", (ulong)StatePriority.AirJump)
-            .SetEnterCondition(entity => Input.GetButtonDown("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps)
-            .SetOnStateEnter(entity =>
-            {
-                entity.AirJumpsCounter = entity.AirJumpsCounter + 1;
-                entity.Rigidbody.velocity = new Vector2(entity.Rigidbody.velocity.x, entity.AirJumpHeight);
-            }
-            )
-            .AddModifier(gmm)
-            .AddModifier(dorm);
+		public static State<Player> AirJump = new State<Player>("AirJump", (ulong)StatePriority.AirJump)
+			.SetEnterCondition(entity => Input.GetButtonDown("Jump") && entity.AirJumpsCounter < entity.MaxAirJumps)
+			.SetOnStateEnter(entity =>
+			{
+				entity.AirJumpsCounter = entity.AirJumpsCounter + 1;
+				entity.Rigidbody.velocity = new Vector2(entity.Rigidbody.velocity.x, entity.AirJumpHeight);
+			}
+			)
+			.AddModifier(gmm)
+			.AddModifier(dorm);
 
-        public static State<Player> Fall = new State<Player>("Fall", (ulong)StatePriority.Fall)
+		public static State<Player> Fall = new State<Player>("Fall", (ulong)StatePriority.Fall)
 			.SetEnterCondition(entity =>
 				!Physic.Unity.IsColliderTouchingGround(entity.Collider, entity.GroundMask)
 			)
