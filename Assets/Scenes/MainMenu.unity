@@ -3178,7 +3178,7 @@ MonoBehaviour:
   animationDuration: 0.4
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 1, g: 0.298, b: 0.298, a: 1}
-  isSelected: 1
+  isSelected: 0
 --- !u!1001 &456935948
 PrefabInstance:
   m_ObjectHideFlags: 0
