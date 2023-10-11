@@ -11,7 +11,8 @@ public class BossHitBox : MonoBehaviour
 	public Action<int> damaged;
 	public SpriteRenderer spriteRenderer;
 	public AudioSource hit;
-
+	public float hitTime=0.2f;
+	public float currentHitTime;
 	private Material originalMaterial;
 
 	[SerializeField]
@@ -32,9 +33,15 @@ public class BossHitBox : MonoBehaviour
 			.Find(dmg => dmg.name == "AttackArea");
 		if (goDamageZone != null && Time.timeScale != 0)
 		{
+			if (currentHitTime < hitTime){
+				currentHitTime = +Time.deltaTime;
+			}
+			else{
 			damaged?.Invoke(1);
 			StartCoroutine(Blink());
 			hit.Play();
+			currentHitTime = 0;
+			}
 		}
 	}
 	private IEnumerator Blink()

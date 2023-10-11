@@ -21,15 +21,15 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: 05dc4b99b9fad9d44a4f34bd64f69722, type: 3}
-    - time: 0.083333336
-      value: {fileID: 21300000, guid: cc655bfdd1c1c4e43b3a6f113f7a6f57, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 2f2ee215c6862b84b8eb358228463cb7, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: a1181c672cc061e45b36842389c7a8bd, type: 3}
+      value: {fileID: 21300000, guid: cc655bfdd1c1c4e43b3a6f113f7a6f57, type: 3}
     - time: 0.33333334
+      value: {fileID: 21300000, guid: 2f2ee215c6862b84b8eb358228463cb7, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: a1181c672cc061e45b36842389c7a8bd, type: 3}
+    - time: 0.6666667
       value: {fileID: 21300000, guid: 0fc96976409c9df43ba66c5c470019bf, type: 3}
-    - time: 0.41666666
+    - time: 0.8333333
       value: {fileID: 21300000, guid: 18b9623c103db424c96e0fe0bcbaaf10, type: 3}
     attribute: m_Sprite
     path: 
@@ -61,7 +61,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.43333334
+    m_StopTime: 0.8666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -81,7 +81,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.43333334
+  - time: 0.8666667
     functionName: CreateEarth
     data: 
     objectReferenceParameter: {fileID: 0}
