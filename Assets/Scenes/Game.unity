@@ -1698,7 +1698,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1236562843, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: restart
+      value: "\u0440\u0435\u0441\u0442\u0430\u0440\u0442 \u0443\u0440\u043E\u0432\u043D\u044F"
       objectReference: {fileID: 0}
     - target: {fileID: 1793329113, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1706,7 +1706,7 @@ PrefabInstance:
       objectReference: {fileID: 768566360}
     - target: {fileID: 1245623860394141450, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: Ivanich
+      value: "\u0438\u0432\u0430\u043D\u044B\u0447"
       objectReference: {fileID: 0}
     - target: {fileID: 4602056477586531494, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_IsActive
@@ -1714,11 +1714,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192048803728357216, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: pause
+      value: "\u043F\u0430\u0443\u0437\u0430"
       objectReference: {fileID: 0}
     - target: {fileID: 6192048803762985333, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: time ...........
+      value: "\u0432\u0440\u0435\u043C\u044F ..........."
       objectReference: {fileID: 0}
     - target: {fileID: 6192048803769028410, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_IsActive
@@ -1730,7 +1730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192048804231734893, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: timer
+      value: "\u0442\u0430\u0439\u043C\u0435\u0440"
       objectReference: {fileID: 0}
     - target: {fileID: 6192048804267739204, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_Pivot.x
@@ -1834,11 +1834,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192048804687288486, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: to main menu
+      value: "\u0432 \u0433\u043B\u0430\u0432\u043D\u043E\u0435 \u043C\u0435\u043D\u044E"
       objectReference: {fileID: 0}
     - target: {fileID: 6192048804712927591, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: victory !
+      value: "\u043F\u043E\u0431\u0435\u0434\u0430 !"
       objectReference: {fileID: 0}
     - target: {fileID: 6192048804715475679, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1854,7 +1854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192048804915935697, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: Defeat
+      value: "\u043F\u043E\u0440\u0430\u0436\u0435\u043D\u0438\u0435"
       objectReference: {fileID: 0}
     - target: {fileID: 6192048804923816240, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1882,15 +1882,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192048805626801296, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: to main menu
+      value: "\u0432 \u0433\u043B\u0430\u0432\u043D\u043E\u0435 \u043C\u0435\u043D\u044E"
       objectReference: {fileID: 0}
     - target: {fileID: 6192048805675305777, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: Continue
+      value: "\u043F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 6192048805748408476, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: to main menu
+      value: "\u0432 \u0433\u043B\u0430\u0432\u043D\u043E\u0435 \u043C\u0435\u043D\u044E"
       objectReference: {fileID: 0}
     - target: {fileID: 6192048805767127293, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_IsActive
@@ -1898,7 +1898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192048805822457339, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}
       propertyPath: m_text
-      value: Your results
+      value: "\u0432\u0430\u0448 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72d34813a2efee940bb526c25fe97b8b, type: 3}

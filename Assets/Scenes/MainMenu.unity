@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: run
+  m_text: "\u0431\u0435\u0433"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
@@ -1844,7 +1844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: developers
+  m_text: "\u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
@@ -2121,7 +2121,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: developers
+  m_text: "\u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
@@ -3896,7 +3896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &484616515
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5697,76 +5697,31 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<size=20><u>Game Director</u></size>
-
-    Alexey Talyzin
-
-
-    <size=20><u>Game
-    design, project management</u></size>
-
-    Tim Ign
-
-
-    <size=20><u>Game designer,
-    production designer
-
-    </u></size>
-
-    Eamon Lostwood
-
-
-    <size=20><u>Programmers</u></size>
-
-    Vadim
-    Kireev
-
-    Dmitry Shestaev
-
-    Elena Pichugina
-
-
-    <size=20><u>2D artists</u></size>
-
-    Ksenia
-    Smirnova
-
-    Irina Pichugina
-
-    Elena Medvedchikova
-
-    Vladimir Gribanov
-
-    Konstantin
-    Falaleev
-
-    Vladimir Gribanov
-
-    Konstantin Falaleev
-
-
-    <size=20><u>Animators</u></size>
-
-    Ksenia
-    Smirnova
-
-    Vladimir Gribanov
-
-    Konstantin Falaleev
-
-    Albert Igibaev
-
-
-    <size=20><u>Composer
-    and sound designer</u></size>
-
-    Vladimir Osipov
-
-
-    <size=20><u>Development
-    and creation of a slot machine</u></size>
-
-    Yuri Delyansky'
+  m_text: "<size=20><u>\u0418\u0433\u0440\u043E\u0432\u043E\u0439 \u0434\u0438\u0440\u0435\u043A\u0442\u043E\u0440</u></size>\n\u0410\u043B\u0435\u043A\u0441\u0435\u0439
+    \u0422\u0430\u043B\u044B\u0437\u0438\u043D\n\n<size=20><u>\u0418\u0433\u0440\u043E\u0432\u043E\u0439
+    \u0434\u0438\u0437\u0430\u0439\u043D, \u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435
+    \u043F\u0440\u043E\u0435\u043A\u0442\u043E\u043C</u></size>\n\u0422\u0438\u043C
+    \u0418\u0433\u043D\n\n<size=20><u>\u0418\u0433\u0440\u043E\u0432\u043E\u0439
+    \u0434\u0438\u0437\u0430\u0439\u043D\u0435\u0440, \u0445\u0443\u0434\u043E\u0436\u043D\u0438\u043A-\u043F\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u0449\u0438\u043A\n</u></size>\n\u0418\u043C\u043E\u043D
+    \u041B\u043E\u0441\u0442\u0432\u0443\u0434\n\n<size=20><u>\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0438\u0441\u0442\u044B</u></size>\n\u0412\u0430\u0434\u0438\u043C
+    \u041A\u0438\u0440\u0435\u0435\u0432\n\u0414\u043C\u0438\u0442\u0440\u0438\u0439
+    \u0428\u0435\u0441\u0442\u0430\u0435\u0432\n\u0415\u043B\u0435\u043D\u0430 \u041F\u0438\u0447\u0443\u0433\u0438\u043D\u0430\n\n<size=20><u>2D-\u0445\u0443\u0434\u043E\u0436\u043D\u0438\u043A\u0438</u></size>\n\u041A\u0441\u0435\u043D\u0438\u044F
+    \u0421\u043C\u0438\u0440\u043D\u043E\u0432\u0430\n\u0418\u0440\u0438\u043D\u0430
+    \u041F\u0438\u0447\u0443\u0433\u0438\u043D\u0430\n\u0415\u043B\u0435\u043D\u0430
+    \u041C\u0435\u0434\u0432\u0435\u0434\u0447\u0438\u043A\u043E\u0432\u0430\n\u0412\u043B\u0430\u0434\u0438\u043C\u0438\u0440
+    \u0413\u0440\u0438\u0431\u0430\u043D\u043E\u0432\n\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D
+    \u0424\u0430\u043B\u0430\u043B\u0435\u0435\u0432\n\u0412\u043B\u0430\u0434\u0438\u043C\u0438\u0440
+    \u0413\u0440\u0438\u0431\u0430\u043D\u043E\u0432\n\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D
+    \u0424\u0430\u043B\u0430\u043B\u0435\u0435\u0432\n\n<size=20><u>\u0410\u043D\u0438\u043C\u0430\u0442\u043E\u0440\u044B</u></size>\n\u041A\u0441\u0435\u043D\u0438\u044F
+    \u0421\u043C\u0438\u0440\u043D\u043E\u0432\u0430\n\u0412\u043B\u0430\u0434\u0438\u043C\u0438\u0440
+    \u0413\u0440\u0438\u0431\u0430\u043D\u043E\u0432\n\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D
+    \u0424\u0430\u043B\u0430\u043B\u0435\u0435\u0432\n\u0410\u043B\u044C\u0431\u0435\u0440\u0442
+    \u0418\u0433\u0438\u0431\u0430\u0435\u0432\n\n<size=20><u>\u041A\u043E\u043C\u043F\u043E\u0437\u0438\u0442\u043E\u0440
+    \u0438 \u0437\u0432\u0443\u043A\u043E\u0440\u0435\u0436\u0438\u0441\u0441\u0435\u0440</u></size>\n\u0412\u043B\u0430\u0434\u0438\u043C\u0438\u0440
+    \u041E\u0441\u0438\u043F\u043E\u0432\n\n<size=20><u>\u0420\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u043A\u0430
+    \u0438 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u0435 \u0438\u0433\u0440\u043E\u0432\u043E\u0433\u043E
+    \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0430</u></size>\n\u042E\u0440\u0438\u0439
+    \u0414\u0435\u043B\u044F\u043D\u0441\u043A\u0438\u0439"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: accdc2abb75f4454592e9b18752d8890, type: 2}
   m_sharedMaterial: {fileID: 4139305213577128997, guid: accdc2abb75f4454592e9b18752d8890, type: 2}
@@ -6175,7 +6130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &846608054
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10692,7 +10647,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: exit
+  m_text: "\u0432\u044B\u0445\u043E\u0434"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
@@ -11402,7 +11357,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: enter
+  m_text: "\u0432\u0432\u043E\u0434"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
@@ -11613,7 +11568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: "\u0441\u0442\u0430\u0440\u0442"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
@@ -12083,7 +12038,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: dash
+  m_text: "\u0443\u0432\u043E\u0440\u043E\u0442"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
@@ -12967,7 +12922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hit
+  m_text: "\u0443\u0434\u0430\u0440"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
@@ -13731,7 +13686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1956618354
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14103,7 +14058,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <u>Project management and development</u>
+  m_text: "<u>\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0438
+    \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435 \u043F\u0440\u043E\u0435\u043A\u0442\u0430</u>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
@@ -14238,7 +14194,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: exit
+  m_text: "\u0432\u044B\u0445\u043E\u0434"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
@@ -15131,7 +15087,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: jump
+  m_text: "\u043F\u0440\u044B\u0436\u043E\u043A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
   m_sharedMaterial: {fileID: -4971549901763691399, guid: 9642a121d9a87884fb46f21b38638a5e, type: 2}
