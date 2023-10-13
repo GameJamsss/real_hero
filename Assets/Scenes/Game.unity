@@ -1990,6 +1990,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -2.98
       objectReference: {fileID: 0}
+    - target: {fileID: 2658078711016980148, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3240345365944880912, guid: 1e3eee79c5a3d8e478950b9524779855, type: 3}
       propertyPath: m_IsActive
       value: 0

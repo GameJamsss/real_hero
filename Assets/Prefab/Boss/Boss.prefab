@@ -1314,6 +1314,8 @@ MonoBehaviour:
   collider: {fileID: 5702978366305200773}
   spriteRenderer: {fileID: 8608587074973835151}
   hit: {fileID: 974689944}
+  hitTime: 0.2
+  Damage: 5
   blinkMaterial: {fileID: 2100000, guid: ed8b311fd78aa4e98beb6e36a0748966, type: 2}
 --- !u!82 &974689944
 AudioSource:
@@ -1487,6 +1489,8 @@ MonoBehaviour:
   collider: {fileID: 9089058994470794524}
   spriteRenderer: {fileID: 350760901037094889}
   hit: {fileID: 8486880745397814883}
+  hitTime: 0.2
+  Damage: 5
   blinkMaterial: {fileID: 2100000, guid: ed8b311fd78aa4e98beb6e36a0748966, type: 2}
 --- !u!82 &8486880745397814883
 AudioSource:
@@ -1853,8 +1857,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b78f9e4df1e5d49b3f378f00d5cad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointToSpawnCar: {fileID: 0}
   car: {fileID: 5805971525762058387, guid: 11f3d7539ddda244dbf667c4c7d2abcf, type: 3}
+  pointToSpawnCarMarker: {fileID: 0}
+  CarMarker: {fileID: 0}
   pointToSpawnNail: {fileID: 1870950259478798683}
   nail: {fileID: 3136065476581521155, guid: bf724f81a59014141aa8f978b29feaca, type: 3}
   pointToSpawnNailMarker: {fileID: 0}
@@ -1865,6 +1870,7 @@ MonoBehaviour:
   - {fileID: 2658078711016980148}
   - {fileID: 3499897656620804452}
   currentNailMarker: {fileID: 0}
+  currentCarMarker: {fileID: 0}
   isIdle: 0
   isDefaultAttack: 0
   isNailShots: 0
@@ -1879,9 +1885,8 @@ MonoBehaviour:
   IdleTimer: 0
   CurrentIdleTimer: 0
   CarThrowTimer: 1
+  CarThrowMarkerTimer: 0
   CurrentCarThrowTimer: 0
-  carThrowCount: 0
-  carThrowAnimCount: 0
   isCarThrowPlay: 0
   NailShotsTimer: 1
   CurrentNailShotsTimer: 0

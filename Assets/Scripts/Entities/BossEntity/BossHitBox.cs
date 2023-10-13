@@ -12,9 +12,9 @@ public class BossHitBox : MonoBehaviour
 	public SpriteRenderer spriteRenderer;
 	public AudioSource hit;
 	public float hitTime=0.2f;
-	public float currentHitTime;
+	public int Damage;
 	private Material originalMaterial;
-
+	private bool _isAtackable = true;
 	[SerializeField]
 	public Material blinkMaterial;
 
@@ -31,17 +31,12 @@ public class BossHitBox : MonoBehaviour
 			.Select(col => col.gameObject)
 			.ToList()
 			.Find(dmg => dmg.name == "AttackArea");
-		if (goDamageZone != null && Time.timeScale != 0)
+		if (goDamageZone != null && Time.timeScale != 0&&_isAtackable)
 		{
-			if (currentHitTime < hitTime){
-				currentHitTime = +Time.deltaTime;
-			}
-			else{
-			damaged?.Invoke(1);
+			damaged?.Invoke(Damage);
 			StartCoroutine(Blink());
+			StartCoroutine(HitCooldown());
 			hit.Play();
-			currentHitTime = 0;
-			}
 		}
 	}
 	private IEnumerator Blink()
@@ -54,6 +49,11 @@ public class BossHitBox : MonoBehaviour
 		Debug.Log("WHITE");
 
 		spriteRenderer.material = originalMaterial;
+	}
+	private IEnumerator HitCooldown(){
+		_isAtackable = false;
+		yield return new WaitForSeconds(hitTime);
+		_isAtackable = true;
 	}
 
 	private void OnDisable()
