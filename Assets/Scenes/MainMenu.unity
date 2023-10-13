@@ -673,7 +673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &141223839
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5709,9 +5709,7 @@ MonoBehaviour:
 
 
     <size=20><u>Game designer,
-    production designer
-
-    </u></size>
+    production designer</u></size>
 
     Eamon Lostwood
 
